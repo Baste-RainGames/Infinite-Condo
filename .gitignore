@@ -13,6 +13,8 @@
 
 # Visual Studio cache directory
 .vs/
+.idea/
+Assets/Jetbrains*
 
 # Gradle cache directory
 .gradle/
