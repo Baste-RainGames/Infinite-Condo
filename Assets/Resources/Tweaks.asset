@@ -13,3 +13,10 @@ MonoBehaviour:
   m_Name: Tweaks
   m_EditorClassIdentifier: 
   secondsBetweenMovingDown: 1
+  NoRoom: {r: 1, g: 1, b: 1, a: 1}
+  Room1: {r: 1, g: 0, b: 0, a: 1}
+  Room2: {r: 0, g: 0, b: 1, a: 1}
+  Room3: {r: 0, g: 1, b: 0, a: 1}
+  timeBetweenMoves: 0.1
+  moveSpeed: 2.5
+  rotationSpeedMultiplier: 1.8
