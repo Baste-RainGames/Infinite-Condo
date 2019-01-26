@@ -27,13 +27,13 @@ MonoBehaviour:
   sSpeedUp: 10
   showVisualization: 0
   timeBetweenSwitchDesiredRoom: 2
-  bathroomDesireSprite: {fileID: 21300000, guid: 625a90cf743bf2e4c80914773fad946c,
+  bathroomDesireSprite: {fileID: 21300000, guid: 1ef5eacf1a495464791bbdbd3d0df7a5,
     type: 3}
-  bedroomDesireSprite: {fileID: 21300000, guid: 10383b838a761884da3d76687adcc719,
+  bedroomDesireSprite: {fileID: 21300000, guid: 106809c739743ae4cafeecff0bed4df3,
     type: 3}
-  livingRoomDesireSprite: {fileID: 21300000, guid: 1ece49fad4ab69745a29aa425569c6d6,
+  livingRoomDesireSprite: {fileID: 21300000, guid: 5ad95c95444cb324c88b4c164ce4d13c,
     type: 3}
-  gymDesireSprite: {fileID: 21300000, guid: 6ad59b2342330dd4c81c7b887be8a19a, type: 3}
+  gymDesireSprite: {fileID: 21300000, guid: 5b78a46b1efd2e844b8cbf26d0cb5715, type: 3}
   mediumDifficultyTime: 60
   hardDifficultyTime: 120
   timeBetweenSharkAttacksStart: 60
