@@ -15,6 +15,14 @@ public class CondoGrid : MonoBehaviour
     {
         blocks = new GridBlock[Tweaks.Instance.GridX, Tweaks.Instance.GridY];
         representation = new GameObject[Tweaks.Instance.GridX, Tweaks.Instance.GridY];
+
+        for (int x = 0; x < blocks.GetLength(0); x++) {
+            blocks[x, 0] = new GridBlock {
+                roomType = RoomType.Empty,
+                canMoveLeft = true,
+                canMoveRight = true
+            };
+        }
         
         BuildVisualization();
     }
@@ -133,6 +141,11 @@ public class CondoGrid : MonoBehaviour
             if (blockData.HasStairsUpLeft(piece)) {
                 blocks[x, y].canMoveUpLeft = true;
             }
+        }
+
+        // enable walking on top of placed pieces
+        foreach (var piece in blockData.pieces) {
+            
         }
         
         BuildVisualization();

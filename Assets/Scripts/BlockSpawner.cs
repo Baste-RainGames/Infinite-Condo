@@ -10,8 +10,6 @@ public class BlockSpawner : MonoBehaviour {
 
     public Block[] possibleBlocksHard;
 
-    public Transform spawnPoint;
-    
     private Block spawnedBlock;
 
     private float difficulty;
@@ -24,6 +22,8 @@ public class BlockSpawner : MonoBehaviour {
 
     private void Update()
     {
+        var spawnPoint = new Vector3(Mathf.FloorToInt(Tweaks.Instance.GridX / 2f), Tweaks.Instance.GridY, 0f);
+        
         if (spawnedBlock == null)
         {
             if (difficulty <= 9999)
@@ -36,7 +36,7 @@ public class BlockSpawner : MonoBehaviour {
                     }
                 else
                 {
-                    spawnedBlock = Instantiate(selection, spawnPoint.transform.position, Quaternion.identity);
+                    spawnedBlock = Instantiate(selection, spawnPoint, Quaternion.identity);
 
                     previousblock3 = previousblock2;
 
@@ -59,7 +59,7 @@ public class BlockSpawner : MonoBehaviour {
                 }
                 else
                 {
-                    spawnedBlock = Instantiate(selection, spawnPoint.transform.position, Quaternion.identity);
+                    spawnedBlock = Instantiate(selection, spawnPoint, Quaternion.identity);
 
                     previousblock3 = previousblock2;
 
@@ -79,7 +79,7 @@ public class BlockSpawner : MonoBehaviour {
                 }
                 else
                 {
-                    spawnedBlock = Instantiate(selection, spawnPoint.transform.position, Quaternion.identity);
+                    spawnedBlock = Instantiate(selection, spawnPoint, Quaternion.identity);
 
                     previousblock3 = previousblock2;
 
