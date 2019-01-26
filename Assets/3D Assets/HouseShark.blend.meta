@@ -34,6 +34,7 @@ ModelImporter:
     13700000: SharkBody
     13700002: SharkHead
     13700004: SharkJaw
+    2186277476908879412: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
