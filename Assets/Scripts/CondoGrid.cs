@@ -39,9 +39,17 @@ public class CondoGrid : MonoBehaviour
 
         blocks[5, 5].roomType = RoomType.Type1;
 
+        BuildVisualization();
+    }
+
+    private void BuildVisualization() {
+        foreach (var go in representation) {
+            if(go != null)
+                Destroy(go);
+        }
+        
         for (int x = 0; x < blocks.GetLength(0); x++)
-        for (int y = 0; y < blocks.GetLength(1); y++)
-        {
+        for (int y = 0; y < blocks.GetLength(1); y++) {
             var squareCopy = Instantiate(square);
             representation[x, y] = squareCopy;
             squareCopy.transform.position = new Vector2(x, y);
@@ -49,13 +57,15 @@ public class CondoGrid : MonoBehaviour
 
             var text = squareCopy.GetComponentInChildren<TMP_Text>();
 
-            text.text += blocks[x, y].canMoveRight   ? " R" : " ";
-            text.text += blocks[x, y].canMoveLeft    ? " L" : " ";
-            text.text += blocks[x, y].canMoveUpLeft  ? " UL" : " ";
+            text.text += blocks[x, y].canMoveRight ? " R" : " ";
+            text.text += blocks[x, y].canMoveLeft ? " L" : " ";
+            text.text += blocks[x, y].canMoveUpLeft ? " UL" : " ";
             text.text += blocks[x, y].canMoveUpRight ? " UR" : " ";
 
             var rend = squareCopy.GetComponentInChildren<SpriteRenderer>();
-            rend.color = Color.Lerp(Color.white, Tweaks.GetColor(blocks[x, y].roomType), .8f);
+            var color = Color.Lerp(Color.white, Tweaks.GetColor(blocks[x, y].roomType), .8f);
+            color.a = .5f;
+            rend.color = color;
         }
     }
 
@@ -148,22 +158,4 @@ public class CondoGrid : MonoBehaviour
 
         return blocks[posX, posY].roomType;
     }
-}
-
-public struct GridBlock
-{
-    public bool canMoveLeft;
-    public bool canMoveRight;
-    public bool canMoveUpLeft;
-    public bool canMoveUpRight;
-
-    public RoomType roomType;
-}
-
-public enum RoomType
-{
-    Empty,
-    Type1,
-    Type2,
-    Type3
 }
