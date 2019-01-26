@@ -32,8 +32,7 @@ public class CondoGrid : MonoBehaviour {
     private void Start() {
         var startingBlocks = FindObjectsOfType<Block>();
         foreach (var block in startingBlocks) {
-            PlaceBlock(block);
-            Destroy(block);
+            block.Place();
         }
     }
 
@@ -240,6 +239,9 @@ public class CondoGrid : MonoBehaviour {
 
         for (var i = allPlacedBlocks.Count - 1; i >= 0; i--) {
             var placedBlock = allPlacedBlocks[i];
+            if (placedBlock == null) {
+                Debug.Log("eeek!");
+            }
             placedBlock.transform.position -= new Vector3(0f, 2f, 0f);
 
             if (placedBlock.CompletelyUnderWorld()) {

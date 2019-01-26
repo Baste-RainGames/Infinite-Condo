@@ -91,45 +91,48 @@ public class Block : MonoBehaviour
         if (numHits > 0) {
             transform.position = startPos;
             transform.rotation = startRot;
-            if (isMoveDown) 
-            {
-                var grid = FindObjectOfType<CondoGrid>();
-                if (grid != null) {
-                    grid.PlaceBlock(this);
-                }
-
-                var rot = transform.eulerAngles.z;
-                if (Mathf.Abs(rot) < .01f) {
-                    if (visible0 != null)
-                        visible0.enabled = true;
-                }
-                else if (Mathf.Abs(rot - 90) < .01f) {
-                    if (visible90 != null)
-                        visible90.enabled = true;
-                }
-                else if (Mathf.Abs(rot - 180) < .01f) {
-                    if (visible180 != null)
-                        visible180.enabled = true;
-                }
-                else if (Mathf.Abs(rot - 270) < .01f) {
-                    if (visible270 != null)
-                        visible270.enabled = true;
-                }
-
-                if (rendererWhilePlaced != null) {
-                    if (rendererWhileFalling != null)
-                        rendererWhileFalling.enabled = false;
-                    rendererWhilePlaced.gameObject.SetActive(true);
-                    rendererWhilePlaced.enabled = true;
-                }
-
-                if (AnyPartHitsSharkAttackPoint()) {
-                    FindObjectOfType<SharkAttack>().SuddenSharkAttack();
-                }
-
-                enabled = false;
+            if (isMoveDown) {
+                Place();
             }
         }
+    }
+
+    public void Place() {
+        var grid = FindObjectOfType<CondoGrid>();
+        if (grid != null) {
+            grid.PlaceBlock(this);
+        }
+
+        var rot = transform.eulerAngles.z;
+        if (Mathf.Abs(rot) < .01f) {
+            if (visible0 != null)
+                visible0.enabled = true;
+        }
+        else if (Mathf.Abs(rot - 90) < .01f) {
+            if (visible90 != null)
+                visible90.enabled = true;
+        }
+        else if (Mathf.Abs(rot - 180) < .01f) {
+            if (visible180 != null)
+                visible180.enabled = true;
+        }
+        else if (Mathf.Abs(rot - 270) < .01f) {
+            if (visible270 != null)
+                visible270.enabled = true;
+        }
+
+        if (rendererWhilePlaced != null) {
+            if (rendererWhileFalling != null)
+                rendererWhileFalling.enabled = false;
+            rendererWhilePlaced.gameObject.SetActive(true);
+            rendererWhilePlaced.enabled = true;
+        }
+
+        if (AnyPartHitsSharkAttackPoint()) {
+            FindObjectOfType<SharkAttack>().SuddenSharkAttack();
+        }
+
+        enabled = false;
     }
 
     private bool AnyPartHitsSharkAttackPoint() {
