@@ -29,7 +29,7 @@ public class CondoGrid : MonoBehaviour
 
         blocks[10, 1].roomType = RoomType.Type1;
 
-        blocks[2, 0].roomType = RoomType.Type1;
+        //blocks[2, 0].roomType = RoomType.Type1;
         
 
         for (int x = 0; x < blocks.GetLength(0); x++)
@@ -62,11 +62,14 @@ public class CondoGrid : MonoBehaviour
         while (searching.Count > 0) {
             var (x, y) = searching.Dequeue();
 
-            var leftX = x - 1;
-            var leftY = y;
-
-            if (CheckTile(leftX, leftY, x, y, b => b.canMoveLeft, out var findPathTo)) 
-                return findPathTo;
+            if (CheckTile(x, y, x - 1, y, b => b.canMoveLeft, out var findPathToLeft)) 
+                return findPathToLeft;
+            if (CheckTile(x, y, x + 1, y, b => b.canMoveRight, out var findPathToRight)) 
+                return findPathToRight;
+            if (CheckTile(x, y, x - 1, y + 1, b => b.canMoveUpLeft, out var findPathToUpLeft)) 
+                return findPathToUpLeft;
+            if (CheckTile(x, y, x + 1, y + 1, b => b.canMoveUpRight, out var findPathToUpRight)) 
+                return findPathToUpRight;
             
 
             safety--;
@@ -77,7 +80,8 @@ public class CondoGrid : MonoBehaviour
 
         return null;
 
-        bool CheckTile(int leftX, int leftY, int x, int y, Func<GridBlock, bool> checkDir, out List<(int, int)> findPathTo) {
+        bool CheckTile(int x, int y, int leftX, int leftY, Func<GridBlock, bool> checkDir,
+            out List<(int, int)> findPathTo) {
             if (!CanMove(x, y, leftX, leftY, visited, checkDir, out var left)) {
                 findPathTo = null;
                 return false;
