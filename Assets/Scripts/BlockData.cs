@@ -73,7 +73,7 @@ public class BlockData : MonoBehaviour {
     }
 
     public Vector3 GetPosition(BlockDataPiece piece) {
-        var offset = new Vector3(piece.xOffset, piece.yOffset, 0);
+        var offset = new Vector3(piece.xOffset - .5f, piece.yOffset - .5f, 0);
 
         return transform.TransformPoint(offset);
     }

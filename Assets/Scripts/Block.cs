@@ -11,6 +11,7 @@ public class Block : MonoBehaviour
 
     public SpriteRenderer rendererWhileFalling;
     public SpriteRenderer rendererWhilePlaced;
+    public SpriteRenderer[] moreRenderersWhilePlaced = new SpriteRenderer[0];
 
     public SpriteRenderer visible0;
     public SpriteRenderer visible90;
@@ -121,6 +122,7 @@ public class Block : MonoBehaviour
                 if (rendererWhilePlaced != null) {
                     if (rendererWhileFalling != null)
                         rendererWhileFalling.enabled = false;
+                    rendererWhilePlaced.gameObject.SetActive(true);
                     rendererWhilePlaced.enabled = true;
                 }
 
