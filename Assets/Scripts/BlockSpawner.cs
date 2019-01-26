@@ -11,7 +11,7 @@ public class BlockSpawner : MonoBehaviour {
     public Block[] possibleBlocksHard;
 
     public Transform spawnPoint;
-
+    
     private Block spawnedBlock;
 
     private float difficulty;
@@ -88,11 +88,8 @@ public class BlockSpawner : MonoBehaviour {
                     previousblock = selection;
                 }
             }
-
-
-
+            
         }
-
 
         difficulty = Time.time;
 

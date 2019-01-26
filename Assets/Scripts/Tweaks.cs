@@ -23,6 +23,8 @@ public class Tweaks : ScriptableObject
     public float timeBetweenMoves;
     public float moveSpeed;
     public float rotationSpeedMultiplier;
+    public int GridX;
+    public int GridY;
 
 
     public static Color GetColor(RoomType type) {
