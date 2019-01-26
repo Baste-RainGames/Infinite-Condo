@@ -13,16 +13,18 @@ public class CondoGrid : MonoBehaviour
 
     private void Awake()
     {
-        blocks = new GridBlock[20, 20];
-        representation = new GameObject[20, 20];
+        blocks = new GridBlock[Tweaks.Instance.GridX, Tweaks.Instance.GridY];
+        representation = new GameObject[Tweaks.Instance.GridX, Tweaks.Instance.GridY];
         
-        /*
-        for (int x = 0; x < blocks.GetLength(0); x++) {
-            blocks[x, 0].roomType = RoomType.Empty;
-        }
-        */
-
         BuildVisualization();
+    }
+
+    private void Start() {
+        var startingBlocks = FindObjectsOfType<Block>();
+        foreach (var block in startingBlocks) {
+            PlaceBlock(block);
+            Destroy(block);
+        }
     }
 
     private void BuildVisualization() {
@@ -40,7 +42,7 @@ public class CondoGrid : MonoBehaviour
             
             var squareCopy = Instantiate(square);
             representation[x, y] = squareCopy;
-            squareCopy.transform.position = new Vector2(x, y);
+            squareCopy.transform.position = new Vector3(x, y, -1);
             squareCopy.name = $"{x}/{y}";
 
             var text = squareCopy.GetComponentInChildren<TMP_Text>();

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6783780390555371396}
   - component: {fileID: 2253042525921632901}
   m_Layer: 0
-  m_Name: Neutral2x2_StairL 1
+  m_Name: Neutral2x2_StairR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5325a42250e54834a0245f7b64247dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomType: 4
+  roomType: 1
   pieces:
   - xOffset: 0
     yOffset: 0
