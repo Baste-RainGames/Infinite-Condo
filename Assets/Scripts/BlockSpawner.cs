@@ -42,11 +42,8 @@ public class BlockSpawner : MonoBehaviour {
                     }
                     else
                     {
-
-
                         previewblock = Instantiate(selection, previewspawn.transform.position, Quaternion.identity);
-                        Destroy(previewblock);
-
+                        previewblock.enabled = false;
 
                         previousblock3 = previousblock2;
 
@@ -64,7 +61,7 @@ public class BlockSpawner : MonoBehaviour {
                         spawnedBlock = Instantiate(preview, spawnPoint.transform.position, Quaternion.identity);
 
                         newpreview = true;
-                    Destroy(previewblock.GetComponent<SpriteRenderer>());
+                    Destroy(previewblock.gameObject);
                 }
 
 
