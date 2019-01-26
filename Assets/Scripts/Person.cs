@@ -6,17 +6,30 @@ public class Person : MonoBehaviour {
 
     private CondoGrid condo;
     private int posX, posY;
+    private int startX, startY;
+    private Animator animator;
 
     private bool isMoving;
     public RoomType desiredRoomType = RoomType.Type2;
 
     private void Awake() {
         condo = FindObjectOfType<CondoGrid>();
-        posX = Mathf.RoundToInt(transform.position.x);
-        posY = Mathf.RoundToInt(transform.position.y);
+        startX = posX = Mathf.RoundToInt(transform.position.x);
+        startY = posY = Mathf.RoundToInt(transform.position.y);
+
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Update() {
+        if (Input.GetKeyDown(KeyCode.R) && Input.GetKey(KeyCode.LeftControl)) {
+            posX = startX;
+            posY = startY;
+            transform.position = new Vector3(posX, posY, -1);
+            StopAllCoroutines();
+            isMoving = false;
+            animator.SetBool("Move", false);
+        }
+        
         if (isMoving)
             return;
         if (condo.RoomTypeAt(posX, posY) == desiredRoomType)
@@ -31,16 +44,27 @@ public class Person : MonoBehaviour {
 
     private IEnumerator MoveAlong(List<(int, int)> path) {
         isMoving = true;
-        GetComponentInChildren<Animator>().SetBool("Move", true);
-        yield return new WaitForSeconds(.5f);
-        for (int i = 0; i < path.Count; i++) {
-            var (x, y) = path[i];
-            transform.position = new Vector3(x, y, -1);
+        animator.SetBool("Move", true);
+        yield return new WaitForSeconds(Tweaks.Instance.timeBetweenMoves);
+        
+        foreach (var point in path) {
+            var (x, y) = point;
+
+            var startPos = new Vector3(posX, posY, -1);
+            var targetPos = new Vector3(x, y, -1);
+            
+            var move_t = 0f;
+            while (move_t < 1) {
+                move_t += Time.deltaTime * Tweaks.Instance.moveSpeed;
+                transform.position = Vector3.Lerp(startPos, targetPos, move_t);
+                yield return null;
+            }
+            
             (posX, posY) = (x, y);
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(Tweaks.Instance.timeBetweenMoves);
         }
 
         isMoving = false;
-        GetComponentInChildren<Animator>().SetBool("Move", false);
+        animator.SetBool("Move", false);
     }
 }

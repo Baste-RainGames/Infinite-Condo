@@ -20,6 +20,8 @@ public class Tweaks : ScriptableObject
 
     public float secondsBetweenMovingDown;
     public Color NoRoom, Room1, Room2, Room3;
+    public float timeBetweenMoves;
+    public float moveSpeed;
 
 
     public static Color GetColor(RoomType type) {
