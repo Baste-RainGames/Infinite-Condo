@@ -1,11 +1,18 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Block : MonoBehaviour
 {
     private float timeOfLastMove;
     private float timeLeft;
 
-    
+    private bool stop = false;
+
+    public Transform sightStart, sightEnd;
+
+    public bool raycast = false;
+
+
     private void Start()
     {
         timeLeft = Tweaks.Instance.secondsBetweenMovingDown;
@@ -13,6 +20,12 @@ public class Block : MonoBehaviour
 
     private void Update()
     {
+        if(stop == true)
+        {
+            enabled = false;
+        }
+
+
         if (Input.GetKeyDown(KeyCode.A))
         {
             transform.position += Vector3.left;
@@ -42,21 +55,37 @@ public class Block : MonoBehaviour
             timeLeft = Tweaks.Instance.secondsBetweenMovingDown;
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             Vector3 rotationValue = transform.eulerAngles;
             rotationValue.z -= 90;
             transform.eulerAngles = rotationValue;
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.J))
         {
             Vector3 rotationValue = transform.eulerAngles;
             rotationValue.z += 90;
             transform.eulerAngles = rotationValue;
         }
-
-
+        Raycasting();
+        
 
     }
+    void Raycasting()
+    {
+        Debug.DrawLine(sightStart.position, sightEnd.position, Color.green);
+
+       raycast = Physics2D.Linecast(sightStart.position, sightEnd.position);
+
+        if(raycast == true)
+        {
+            stop = true;
+
+        }
+
+    }
+
+
 }
+
