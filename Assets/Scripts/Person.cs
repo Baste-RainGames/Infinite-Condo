@@ -17,6 +17,11 @@ public class Person : MonoBehaviour {
     private int startX, startY;
     private Animator animator;
 
+    public Material head_idle, head_move, head_happy, head_dead;
+    public Material body_idle, body_move, body_happy, body_dead;
+
+    public SkinnedMeshRenderer head, body;
+
     private bool isMoving;
     private bool hasDesire;
     private RoomType desiredRoomType = NoRoom;
@@ -27,6 +32,8 @@ public class Person : MonoBehaviour {
         startY = posY = Mathf.RoundToInt(transform.position.y);
 
         animator = GetComponentInChildren<Animator>();
+        head.sharedMaterial = head_idle;
+        body.sharedMaterial = body_idle;
     }
 
     private void Start() {
@@ -57,6 +64,8 @@ public class Person : MonoBehaviour {
     private IEnumerator MoveAlong(List<(int, int)> path) {
         isMoving = true;
         animator.SetBool("Move", true);
+        head.sharedMaterial = head_move;
+        body.sharedMaterial = body_move;
         yield return new WaitForSeconds(Tweaks.Instance.timeBetweenMoves);
         
         foreach (var point in path) {
@@ -88,6 +97,8 @@ public class Person : MonoBehaviour {
 
     private IEnumerator SelectDesire() {
         hasDesire = false;
+        head.sharedMaterial = head_happy;
+        head.sharedMaterial = head_happy;
         yield return new WaitForSeconds(Tweaks.Instance.timeBetweenSwitchDesiredRoom);
 
         var lastDesired = desiredRoomType;
@@ -99,6 +110,8 @@ public class Person : MonoBehaviour {
 
         desiredRoomType = nextDesired;
         hasDesire = true;
+        head.sharedMaterial = head_idle;
+        body.sharedMaterial = body_idle;
     }
     
     
