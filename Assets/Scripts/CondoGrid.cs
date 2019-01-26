@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CondoGrid : MonoBehaviour
 {
@@ -14,6 +15,15 @@ public class CondoGrid : MonoBehaviour
     {
         blocks = new GridBlock[20, 20];
         representation = new GameObject[20, 20];
+        
+        for (int x = 0; x < blocks.GetLength(0); x++)
+        for (int y = 0; y < blocks.GetLength(1); y++) 
+        {
+            blocks[x, y].canMoveLeft  = Random.value < .7f;
+            blocks[x, y].canMoveRight = Random.value < .7f;
+            blocks[x, y].canMoveUpLeft  = Random.value < .3f;
+            blocks[x, y].canMoveUpRight = Random.value < .3f;
+        }
 
         for (int x = 0; x < blocks.GetLength(0); x++)
         {
@@ -27,10 +37,7 @@ public class CondoGrid : MonoBehaviour
             blocks[x, 1].canMoveRight = true;
         }
 
-        blocks[10, 1].roomType = RoomType.Type1;
-
-        //blocks[2, 0].roomType = RoomType.Type1;
-        
+        blocks[5, 5].roomType = RoomType.Type1;
 
         for (int x = 0; x < blocks.GetLength(0); x++)
         for (int y = 0; y < blocks.GetLength(1); y++)
@@ -42,10 +49,13 @@ public class CondoGrid : MonoBehaviour
 
             var text = squareCopy.GetComponentInChildren<TMP_Text>();
 
-            text.text += blocks[x, y].canMoveRight   ? "R" : " ";
-            text.text += blocks[x, y].canMoveLeft    ? "L" : " ";
-            text.text += blocks[x, y].canMoveUpLeft  ? "UL" : " ";
-            text.text += blocks[x, y].canMoveUpRight ? "UR" : " ";
+            text.text += blocks[x, y].canMoveRight   ? " R" : " ";
+            text.text += blocks[x, y].canMoveLeft    ? " L" : " ";
+            text.text += blocks[x, y].canMoveUpLeft  ? " UL" : " ";
+            text.text += blocks[x, y].canMoveUpRight ? " UR" : " ";
+
+            var rend = squareCopy.GetComponentInChildren<SpriteRenderer>();
+            rend.color = Color.Lerp(Color.white, Tweaks.GetColor(blocks[x, y].roomType), .8f);
         }
     }
 

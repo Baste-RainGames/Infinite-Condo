@@ -1,0 +1,192 @@
+fileFormatVersion: 2
+guid: c34196ed8010a5447bbaf42f9f105b9b
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Body
+    100004: Body_Dangle
+    100006: Body_Die
+    100008: Body_Good
+    100010: Body_Idle
+    100012: Body_Move
+    100014: head
+    100016: Head_Die
+    100018: Head_Good
+    100020: Head_Idle
+    100022: Head_Move
+    100024: //RootNode
+    400000: Armature
+    400002: Body
+    400004: Body_Dangle
+    400006: Body_Die
+    400008: Body_Good
+    400010: Body_Idle
+    400012: Body_Move
+    400014: head
+    400016: Head_Die
+    400018: Head_Good
+    400020: Head_Idle
+    400022: Head_Move
+    400024: //RootNode
+    2100000: Head_Idle__Head_Idle_png
+    2100002: Head_Good__Head_Good_png
+    2100004: Head_Die__Head_Die_png
+    2100006: Body_Idle__Body_Idle_png
+    2100008: Body_Good__Body_Good_png
+    2100010: Body_Die__Body_Die_png
+    2100012: Head_Move__Head_Move_B_png
+    2100014: Body_Move__Body_Move_png
+    2300000: Body_Die
+    2300002: Body_Good
+    2300004: Body_Idle
+    2300006: Head_Die
+    2300008: Head_Good
+    2300010: Head_Idle
+    3300000: Body_Die
+    3300002: Body_Good
+    3300004: Body_Idle
+    3300006: Head_Die
+    3300008: Head_Good
+    3300010: Head_Idle
+    4300000: Head_Idle
+    4300002: Head_Good
+    4300004: Head_Die
+    4300006: Body_Idle
+    4300008: Body_Good
+    4300010: Body_Die
+    4300012: Head_Move
+    4300014: Body_Move
+    7400000: Default Take
+    7400002: Die
+    7400004: Idle
+    7400006: Move
+    9500000: //RootNode
+    13700000: Body_Move
+    13700002: Head_Move
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body_Die__Body_Die_png
+    second: {fileID: 2100000, guid: 3f5073209dab8234d9b30fac1f67e05e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body_Good__Body_Good_png
+    second: {fileID: 2100000, guid: 7379d42454fbc5544bdedd9897697efe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body_Idle__Body_Idle_png
+    second: {fileID: 2100000, guid: 0f0099687a6efe34e81b0c54b593cf92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body_Move__Body_Move_png
+    second: {fileID: 2100000, guid: 564306da030428f489311449d0bdda2d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Head_Die__Head_Die_png
+    second: {fileID: 2100000, guid: 5572025aea3023a448e884c95e125ea1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Head_Good__Head_Good_png
+    second: {fileID: 2100000, guid: ddf1443a0bd259a42b640db5b53034cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Head_Idle__Head_Idle_png
+    second: {fileID: 2100000, guid: d9332d0b5b41ee04a9621c72f98c4063, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Head_Move__Head_Move_B_png
+    second: {fileID: 2100000, guid: a122081969d421a4dbb3375573ceee36, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
