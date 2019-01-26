@@ -10,63 +10,89 @@ public class BlockSpawner : MonoBehaviour {
 
     public Block[] possibleBlocksHard;
 
+    public Transform spawnPoint;
+
+    public Transform previewspawn;
+
+    private Block previewblock;
+    
     private Block spawnedBlock;
 
     private float difficulty;
 
+    private bool newpreview = true;
+
+    private Block preview;
     private Block previousblock;
     private Block previousblock2; 
     private Block previousblock3;
 
-    
+   
 
     private void Update()
     {
-        var spawnPoint = new Vector3(Mathf.FloorToInt(Tweaks.Instance.GridX / 2f), Tweaks.Instance.GridY, 0f);
         
-        if (spawnedBlock == null)
-        {
+       {
             if (difficulty <= 9999)
             {
+                if (newpreview == true) { 
                 Block selection = possibleBlocks[Random.Range(0, possibleBlocks.Length)];
-                 
-                if ((selection == previousblock) || (selection == previousblock2) || (selection == previousblock3))
+
+                    if ((selection == previousblock) || (selection == previousblock2) || (selection == previousblock3))
                     {
 
                     }
-                else
+                    else
+                    {
+
+
+                        previewblock = Instantiate(selection, previewspawn.transform.position, Quaternion.identity);
+                        Destroy(previewblock);
+
+
+                        previousblock3 = previousblock2;
+
+                        previousblock2 = previousblock;
+
+                        previousblock = selection;
+
+                        preview = selection;
+
+                        newpreview = false;
+                    }  
+                }
+                if (spawnedBlock == null)
                 {
-                    spawnedBlock = Instantiate(selection, spawnPoint, Quaternion.identity);
+                        spawnedBlock = Instantiate(preview, spawnPoint.transform.position, Quaternion.identity);
 
-                    previousblock3 = previousblock2;
-
-                    previousblock2 = previousblock;
-
-                    previousblock = selection;
+                        newpreview = true;
+                    Destroy(previewblock.GetComponent<SpriteRenderer>());
                 }
 
 
-    
-            }
 
+                
+            }
             if (difficulty > 99999)
             {
-                Block selection = possibleBlocks[Random.Range(0, possibleBlocks.Length)];
+                    Block selection = possibleBlocks[Random.Range(0, possibleBlocks.Length)];
 
-                if ((selection == previousblock) || (selection == previousblock2) || (selection == previousblock3))
-                {
+                    if ((selection == previousblock) || (selection == previousblock2) || (selection == previousblock3))
+                    {
 
+                    }
+                    else
+                    {
+                        spawnedBlock = Instantiate(selection, spawnPoint.transform.position, Quaternion.identity);
+
+                        previousblock3 = previousblock2;
+
+                        previousblock2 = previousblock;
+
+                        previousblock = selection;
+                    }
                 }
-                else
-                {
-                    spawnedBlock = Instantiate(selection, spawnPoint, Quaternion.identity);
-
-                    previousblock3 = previousblock2;
-
-                    previousblock2 = previousblock;
-
-                    previousblock = selection;
-                }
+   
             }
 
             if (difficulty > 9999999)
@@ -79,7 +105,7 @@ public class BlockSpawner : MonoBehaviour {
                 }
                 else
                 {
-                    spawnedBlock = Instantiate(selection, spawnPoint, Quaternion.identity);
+                    spawnedBlock = Instantiate(selection, spawnPoint.transform.position, Quaternion.identity);
 
                     previousblock3 = previousblock2;
 
@@ -89,7 +115,7 @@ public class BlockSpawner : MonoBehaviour {
                 }
             }
             
-        }
+        
 
         difficulty = Time.time;
 
