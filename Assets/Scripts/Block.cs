@@ -9,6 +9,11 @@ public class Block : MonoBehaviour
     public Collider2D myCollider;
     public BlockData blockData;
 
+    public SpriteRenderer visible0;
+    public SpriteRenderer visible90;
+    public SpriteRenderer visible180;
+    public SpriteRenderer visible270;
+
     private Collider2D[] results = new Collider2D[10];
 
     private void Awake() {
@@ -92,6 +97,24 @@ public class Block : MonoBehaviour
                     grid.PlaceBlock(this);
                 }
 
+                var rot = transform.eulerAngles.z;
+                if (Mathf.Abs(rot) < .01f) {
+                    if (visible0 != null)
+                        visible0.enabled = true;
+                }
+                else if (Mathf.Abs(rot - 90) < .01f) {
+                    if (visible90 != null)
+                        visible90.enabled = true;
+                }
+                else if (Mathf.Abs(rot - 180) < .01f) {
+                    if (visible180 != null)
+                        visible180.enabled = true;
+                }
+                else if (Mathf.Abs(rot - 270) < .01f) {
+                    if (visible270 != null)
+                        visible270.enabled = true;
+                }
+                
                 Destroy(this);
             }
         }

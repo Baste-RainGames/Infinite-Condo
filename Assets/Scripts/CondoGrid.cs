@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 public class CondoGrid : MonoBehaviour
@@ -10,7 +11,7 @@ public class CondoGrid : MonoBehaviour
     public GameObject square;
 
     public GridBlock[,] blocks;
-    public GameObject[,] representation; 
+    public GameObject[,] representation;
 
     private void Awake()
     {
@@ -42,33 +43,31 @@ public class CondoGrid : MonoBehaviour
                 Destroy(go);
         }
 
-        if (!Tweaks.Instance.showVisualization)
-            return;
-            
-        
-        for (int x = 0; x < blocks.GetLength(0); x++)
-        for (int y = 0; y < blocks.GetLength(1); y++) {
-            var blockInfo = blocks[x, y];
-            
-            if(blockInfo.roomType == RoomType.NoRoom)
-                continue;
-            
-            var squareCopy = Instantiate(square);
-            representation[x, y] = squareCopy;
-            squareCopy.transform.position = new Vector3(x, y, -1);
-            squareCopy.name = $"{x}/{y}";
+        if (Tweaks.Instance.showVisualization) {
+            for (int x = 0; x < blocks.GetLength(0); x++)
+            for (int y = 0; y < blocks.GetLength(1); y++) {
+                var blockInfo = blocks[x, y];
 
-            var text = squareCopy.GetComponentInChildren<TMP_Text>();
+                if (blockInfo.roomType == RoomType.NoRoom)
+                    continue;
 
-            text.text += blocks[x, y].canMoveRight ? " R" : " ";
-            text.text += blocks[x, y].canMoveLeft ? " L" : " ";
-            text.text += blocks[x, y].canMoveUpLeft ? " UL" : " ";
-            text.text += blocks[x, y].canMoveUpRight ? " UR" : " ";
+                var squareCopy = Instantiate(square);
+                representation[x, y] = squareCopy;
+                squareCopy.transform.position = new Vector3(x, y, -1);
+                squareCopy.name = $"{x}/{y}";
 
-            var rend = squareCopy.GetComponentInChildren<SpriteRenderer>();
-            var color = Color.Lerp(Color.white, Tweaks.GetColor(blocks[x, y].roomType), .8f);
-            color.a = .5f;
-            rend.color = color;
+                var text = squareCopy.GetComponentInChildren<TMP_Text>();
+
+                text.text += blocks[x, y].canMoveRight ? " R" : " ";
+                text.text += blocks[x, y].canMoveLeft ? " L" : " ";
+                text.text += blocks[x, y].canMoveUpLeft ? " UL" : " ";
+                text.text += blocks[x, y].canMoveUpRight ? " UR" : " ";
+
+                var rend = squareCopy.GetComponentInChildren<SpriteRenderer>();
+                var color = Color.Lerp(Color.white, Tweaks.GetColor(blocks[x, y].roomType), .8f);
+                color.a = .5f;
+                rend.color = color;
+            }
         }
     }
 
