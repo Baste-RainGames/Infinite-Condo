@@ -12,7 +12,8 @@ public class Person : MonoBehaviour {
     public SpriteRenderer desiredRoomRenderer;
     
     private CondoGrid condo;
-    private int posX, posY;
+    public int posX;
+    public int posY;
     private int startX, startY;
     private Animator animator;
 
@@ -51,6 +52,7 @@ public class Person : MonoBehaviour {
         }
     }
 
+    public Vector3 startPos;
     private IEnumerator MoveAlong(List<(int, int)> path) {
         isMoving = true;
         animator.SetBool("Move", true);
@@ -59,7 +61,7 @@ public class Person : MonoBehaviour {
         foreach (var point in path) {
             var (x, y) = point;
 
-            var startPos = new Vector3(posX, posY, -1);
+            startPos = new Vector3(posX, posY, -1);
             var targetPos = new Vector3(x, y, -1);
 
             var startScale = transform.localScale;
