@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-public class MatchCamerarToGrid : MonoBehaviour
+public class MatchCameraToGrid : MonoBehaviour
 {
     private void Update()
     {
         var cam = GetComponent<Camera>();
         var lowerLeft = cam.ViewportToWorldPoint(Vector2.zero);
-        transform.position += new Vector3(-lowerLeft.x - .5f, -lowerLeft.y - .5f);
+        transform.position += new Vector3(-lowerLeft.x - .5f, -lowerLeft.y - .5f - 1f);
     }
 }

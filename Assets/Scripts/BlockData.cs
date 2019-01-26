@@ -6,19 +6,6 @@ public class BlockData : MonoBehaviour {
 
     public List<BlockDataPiece> pieces;
 
-    [Serializable]
-    public struct BlockDataPiece {
-        public int xOffset;
-        public int yOffset;
-
-        public bool stairR0, stairR90, stairR180, stairR270;
-
-        public bool stairL0   => stairR270;
-        public bool stairL90  => stairR0;
-        public bool stairL180 => stairR90;
-        public bool stairL270 => stairR180;
-    }
-
     private void OnDrawGizmos() {
         if (pieces == null)
             return;
@@ -44,7 +31,7 @@ public class BlockData : MonoBehaviour {
         }
     }
 
-    private bool HasStairsUpRight(BlockDataPiece piece) {
+    public bool HasStairsUpRight(BlockDataPiece piece) {
         if (Math.Abs(transform.eulerAngles.z) < .01f) {
             return piece.stairR0;
         }
@@ -63,8 +50,8 @@ public class BlockData : MonoBehaviour {
 
         return false;
     }
-    
-    private bool HasStairsUpLeft(BlockDataPiece piece) {
+
+    public bool HasStairsUpLeft(BlockDataPiece piece) {
         if (Math.Abs(transform.eulerAngles.z) < .01f) {
             return piece.stairL0;
         }
@@ -84,13 +71,13 @@ public class BlockData : MonoBehaviour {
         return false;
     }
 
-    private Vector3 GetPosition(BlockDataPiece piece) {
+    public Vector3 GetPosition(BlockDataPiece piece) {
         var offset = new Vector3(piece.xOffset, piece.yOffset, 0);
 
         return transform.TransformPoint(offset);
     }
 
-    private bool HasFloor(BlockDataPiece piece) {
+    public bool HasFloor(BlockDataPiece piece) {
         var piecePos = GetPosition(piece);
         
         foreach (var otherPiece in pieces) {

@@ -6,11 +6,14 @@ public class Block : MonoBehaviour
     private float timeOfLastMove;
     private float timeLeft;
 
-    public Transform spawnPos;
-    public GameObject spawnee;
     public Collider2D myCollider;
+    public BlockData blockData;
 
     private Collider2D[] results = new Collider2D[10];
+
+    private void Awake() {
+        blockData = GetComponent<BlockData>();
+    }
 
     private void Start()
     {
@@ -82,9 +85,14 @@ public class Block : MonoBehaviour
         if (numHits > 0) {
             transform.position = startPos;
             transform.rotation = startRot;
-            if (isMoveDown) {
-                enabled = false;
-                Instantiate(spawnee, spawnPos.position, spawnPos.rotation);
+            if (isMoveDown) 
+            {
+                var grid = FindObjectOfType<CondoGrid>();
+                if (grid != null) {
+                    grid.PlaceBlock(this);
+                }
+
+                Destroy(this);
             }
         }
     }

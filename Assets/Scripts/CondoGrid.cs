@@ -16,28 +16,11 @@ public class CondoGrid : MonoBehaviour
         blocks = new GridBlock[20, 20];
         representation = new GameObject[20, 20];
         
-        for (int x = 0; x < blocks.GetLength(0); x++)
-        for (int y = 0; y < blocks.GetLength(1); y++) 
-        {
-            blocks[x, y].canMoveLeft  = Random.value < .7f;
-            blocks[x, y].canMoveRight = Random.value < .7f;
-            blocks[x, y].canMoveUpLeft  = Random.value < .3f;
-            blocks[x, y].canMoveUpRight = Random.value < .3f;
+        /*
+        for (int x = 0; x < blocks.GetLength(0); x++) {
+            blocks[x, 0].roomType = RoomType.Empty;
         }
-
-        for (int x = 0; x < blocks.GetLength(0); x++)
-        {
-            blocks[x, 0].canMoveRight = true;
-            blocks[x, 0].canMoveLeft = true;
-        }
-
-        blocks[5, 0].canMoveUpRight = true;
-        for (int x = 5; x <= 10; x++)
-        {
-            blocks[x, 1].canMoveRight = true;
-        }
-
-        blocks[5, 5].roomType = RoomType.Type1;
+        */
 
         BuildVisualization();
     }
@@ -50,6 +33,11 @@ public class CondoGrid : MonoBehaviour
         
         for (int x = 0; x < blocks.GetLength(0); x++)
         for (int y = 0; y < blocks.GetLength(1); y++) {
+            var blockInfo = blocks[x, y];
+            
+            if(blockInfo.roomType == RoomType.NoRoom)
+                continue;
+            
             var squareCopy = Instantiate(square);
             representation[x, y] = squareCopy;
             squareCopy.transform.position = new Vector2(x, y);
@@ -119,6 +107,33 @@ public class CondoGrid : MonoBehaviour
             findPathTo = null;
             return false;
         }
+    }
+
+    public void PlaceBlock(Block block) {
+        var blockData = block.blockData;
+        foreach (var piece in blockData.pieces) {
+            var floatPosition = blockData.GetPosition(piece);
+            var (x, y) = (Mathf.RoundToInt(floatPosition.x), Mathf.RoundToInt(floatPosition.y));
+
+            if (!IsInRange(x, y))
+                continue;
+
+            blocks[x, y].roomType = RoomType.Empty;
+
+            if (blockData.HasFloor(piece)) {
+                blocks[x, y].canMoveRight = true;
+                blocks[x, y].canMoveLeft = true;
+            }
+
+            if (blockData.HasStairsUpRight(piece)) {
+                blocks[x, y].canMoveUpRight = true;
+            }
+            if (blockData.HasStairsUpLeft(piece)) {
+                blocks[x, y].canMoveUpLeft = true;
+            }
+        }
+        
+        BuildVisualization();
     }
 
     private List<(int, int)> WalkBackFrom(int x, int y, int startX, int startY, (int, int)[,] prevTile) {

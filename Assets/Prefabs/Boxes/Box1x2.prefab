@@ -48,6 +48,7 @@ MonoBehaviour:
   spawnPos: {fileID: 0}
   spawnee: {fileID: 6783780390555371399}
   myCollider: {fileID: 6783780391563744224}
+  blockData: {fileID: 2253042525921632901}
 --- !u!114 &2253042525921632901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,16 +64,16 @@ MonoBehaviour:
   pieces:
   - xOffset: 0
     yOffset: 0
-    stair0: 0
-    stair90: 0
-    stair180: 0
-    stair270: 0
+    stairR0: 0
+    stairR90: 0
+    stairR180: 0
+    stairR270: 0
   - xOffset: 0
     yOffset: 1
-    stair0: 0
-    stair90: 0
-    stair180: 0
-    stair270: 0
+    stairR0: 0
+    stairR90: 0
+    stairR180: 0
+    stairR270: 0
 --- !u!1 &6783780391563744229
 GameObject:
   m_ObjectHideFlags: 0
