@@ -6,7 +6,8 @@ public class SharkAttack : MonoBehaviour {
 
     public TMP_Text text;
     public CondoGrid condoGrid;
-    
+
+    private float timeReduction;
     private bool attacking = false;
 
     private float _timeUntilAttack;
@@ -20,7 +21,8 @@ public class SharkAttack : MonoBehaviour {
     }
 
     private void Start() {
-        timeUntilAttack = Tweaks.Instance.timeBetweenSharkAttacks;
+        timeReduction = Tweaks.Instance.timeBetweenSharkAttacksStart;
+        timeUntilAttack = timeReduction;
     }
 
     void Update() {
@@ -42,6 +44,8 @@ public class SharkAttack : MonoBehaviour {
         
         condoGrid.SharkEatBottonRow();
         attacking = false;
-        timeUntilAttack = Tweaks.Instance.timeBetweenSharkAttacks;
+        
+        timeReduction = Mathf.Min(timeReduction - Tweaks.Instance.timeBetweenSharkReductionEachTime, Tweaks.Instance.timeBetweenSharkAttacksMin);
+        timeUntilAttack = timeReduction;
     }
 }
