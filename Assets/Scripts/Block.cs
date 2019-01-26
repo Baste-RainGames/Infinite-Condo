@@ -123,9 +123,22 @@ public class Block : MonoBehaviour
                     rendererWhilePlaced.enabled = true;
                 }
 
+                if (AnyPartHitsSharkAttackPoint()) {
+                    FindObjectOfType<SharkAttack>().SuddenSharkAttack();
+                }
+
                 enabled = false;
             }
         }
+    }
+
+    private bool AnyPartHitsSharkAttackPoint() {
+        foreach (var piece in blockData.pieces) {
+            if (blockData.GetPosition(piece).y >= Tweaks.Instance.SharkAttackYPoint)
+                return true;
+        }
+
+        return false;
     }
 
     public bool CompletelyUnderWorld() {

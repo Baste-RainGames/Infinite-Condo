@@ -23,6 +23,7 @@ MonoBehaviour:
   rotationSpeedMultiplier: 1.8
   GridX: 12
   GridY: 20
+  SharkAttackYPoint: 17
   wSlowDown: 0.5
   sSpeedUp: 10
   showVisualization: 0
