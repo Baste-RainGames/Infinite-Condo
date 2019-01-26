@@ -75,7 +75,7 @@ public class BlockSpawner : MonoBehaviour
         {
             if (newpreview == true)
             {
-                Block selection = possibleBlocks[Random.Range(0, possibleBlocks.Length)];
+                Block selection = possibleBlocksMed[Random.Range(0, possibleBlocksMed.Length)];
                 if ((selection == previousblock) || (selection == previousblock2) || (selection == previousblock3))
                 {
 
@@ -109,7 +109,7 @@ public class BlockSpawner : MonoBehaviour
         {
             if (newpreview == true)
             {
-                Block selection = possibleBlocks[Random.Range(0, possibleBlocks.Length)];
+                Block selection = possibleBlocksHard[Random.Range(0, possibleBlocksHard.Length)];
                 if ((selection == previousblock) || (selection == previousblock2) || (selection == previousblock3))
                 {
 
