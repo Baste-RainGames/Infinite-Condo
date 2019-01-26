@@ -139,6 +139,15 @@ public class CondoGrid : MonoBehaviour
     private bool IsInRange(int x, int y) {
         return x >= 0 && x < blocks.GetLength(0) && y >= 0 && y < blocks.GetLength(1);
     }
+
+    public RoomType RoomTypeAt(int posX, int posY) {
+        if (!IsInRange(posX, posY)) {
+            Debug.LogError("No room at " + posX + ", " + posY);
+            return RoomType.Empty;
+        }
+
+        return blocks[posX, posY].roomType;
+    }
 }
 
 public struct GridBlock
