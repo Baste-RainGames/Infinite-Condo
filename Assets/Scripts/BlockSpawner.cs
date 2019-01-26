@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlockSpawner : MonoBehaviour {
     
-    public Block toSpawn;
+    public Block[] possibleBlocks;
     public Transform spawnPoint;
 
     private Block spawnedBlock;
@@ -12,7 +12,8 @@ public class BlockSpawner : MonoBehaviour {
 
     private void Update() {
         if (spawnedBlock == null) {
-            spawnedBlock = Instantiate(toSpawn, spawnPoint.transform.position, Quaternion.identity);
+            var selection = possibleBlocks[Random.Range(0, possibleBlocks.Length)];
+            spawnedBlock = Instantiate(selection, spawnPoint.transform.position, Quaternion.identity);
         }
     }
 }

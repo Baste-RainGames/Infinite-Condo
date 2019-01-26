@@ -155,7 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d05772f8eb5eb4c41a527b0bd47c54f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toSpawn: {fileID: 0}
+  possibleBlocks:
+  - {fileID: 6783780390555371396, guid: d79185bba2aa2b544b204574419e3f30, type: 3}
   spawnPoint: {fileID: 44488558}
 --- !u!1 &511057748
 GameObject:

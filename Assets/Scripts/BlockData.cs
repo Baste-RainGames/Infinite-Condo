@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BlockData : MonoBehaviour {
 
+    public RoomType roomType = RoomType.Empty;
     public List<BlockDataPiece> pieces;
 
     private void OnDrawGizmos() {

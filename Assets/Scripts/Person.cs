@@ -10,7 +10,7 @@ public class Person : MonoBehaviour {
     private Animator animator;
 
     private bool isMoving;
-    public RoomType desiredRoomType = RoomType.Type2;
+    public RoomType desiredRoomType = RoomType.Bedroom;
 
     private void Awake() {
         condo = FindObjectOfType<CondoGrid>();

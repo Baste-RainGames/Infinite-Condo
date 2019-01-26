@@ -118,7 +118,7 @@ public class CondoGrid : MonoBehaviour
             if (!IsInRange(x, y))
                 continue;
 
-            blocks[x, y].roomType = RoomType.Empty;
+            blocks[x, y].roomType = blockData.roomType;
 
             if (blockData.HasFloor(piece)) {
                 blocks[x, y].canMoveRight = true;
