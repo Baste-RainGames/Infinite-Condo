@@ -33,6 +33,8 @@ public class Tweaks : ScriptableObject
     public Sprite bedroomDesireSprite;
     public Sprite livingRoomDesireSprite;
     public Sprite gymDesireSprite;
+    public float mediumDifficultyTime;
+    public float hardDifficultyTime;
 
 
     public static Color GetColor(RoomType type) {

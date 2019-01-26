@@ -34,3 +34,5 @@ MonoBehaviour:
   livingRoomDesireSprite: {fileID: 21300000, guid: 1ece49fad4ab69745a29aa425569c6d6,
     type: 3}
   gymDesireSprite: {fileID: 21300000, guid: 6ad59b2342330dd4c81c7b887be8a19a, type: 3}
+  mediumDifficultyTime: 60
+  hardDifficultyTime: 120

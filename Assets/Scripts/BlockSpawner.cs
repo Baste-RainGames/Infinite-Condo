@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class BlockSpawner : MonoBehaviour
@@ -7,9 +6,9 @@ public class BlockSpawner : MonoBehaviour
 
     public Block[] possibleBlocks;
 
-    public Block[] possibleBlocksMed;
+    public Block[] additionalBlocksMed;
 
-    public Block[] possibleBlocksHard;
+    public Block[] additionalBlocksHard;
 
     public Transform spawnPoint;
 
@@ -18,8 +17,6 @@ public class BlockSpawner : MonoBehaviour
     private Block previewblock;
 
     private Block spawnedBlock;
-
-    private float difficulty;
 
     private bool newpreview = true;
 
@@ -30,116 +27,47 @@ public class BlockSpawner : MonoBehaviour
 
 
 
-    private void Update()
+    private void Update() {
+        List<Block> blocksToUse = new List<Block>();
 
+        blocksToUse.AddRange(possibleBlocks);
 
-    {
-        if (difficulty <= 9999)
+        if (Time.time > Tweaks.Instance.mediumDifficultyTime)
+            blocksToUse.AddRange(additionalBlocksMed);
+        if (Time.time > Tweaks.Instance.hardDifficultyTime)
+            blocksToUse.AddRange(additionalBlocksHard);
+        
+        if (newpreview)
         {
-            if (newpreview == true)
+            Block selection = blocksToUse[Random.Range(0, blocksToUse.Count)];
+            if ((selection == previousblock) || (selection == previousblock2) || (selection == previousblock3))
             {
-                Block selection = possibleBlocks[Random.Range(0, possibleBlocks.Length)];
-                if ((selection == previousblock) || (selection == previousblock2) || (selection == previousblock3))
-                {
 
-                }
-                else
-                {
-                    Debug.Log("Creates preview");
-                    previewblock = Instantiate(selection, previewspawn.transform.position, Quaternion.identity);
-                    previewblock.enabled = false;
-
-                    previousblock3 = previousblock2;
-
-                    previousblock2 = previousblock;
-
-                    previousblock = selection;
-
-                    preview = selection;
-
-                    newpreview = false;
-                }
             }
-            if (spawnedBlock == null)
+            else
             {
-                spawnedBlock = Instantiate(preview, spawnPoint.transform.position, Quaternion.identity);
+                Debug.Log("Creates preview");
+                previewblock = Instantiate(selection, previewspawn.transform.position, Quaternion.identity);
+                previewblock.enabled = false;
 
-                newpreview = true;
-                Debug.Log("Destroys preview");
-                Destroy(previewblock.gameObject);
-            }
+                previousblock3 = previousblock2;
 
+                previousblock2 = previousblock;
 
+                previousblock = selection;
 
+                preview = selection;
 
-        }
-        if (difficulty > 99999)
-        {
-            if (newpreview == true)
-            {
-                Block selection = possibleBlocksMed[Random.Range(0, possibleBlocksMed.Length)];
-                if ((selection == previousblock) || (selection == previousblock2) || (selection == previousblock3))
-                {
-
-                }
-                else
-                {
-                    previewblock = Instantiate(selection, previewspawn.transform.position, Quaternion.identity);
-                    previewblock.enabled = false;
-
-                    previousblock3 = previousblock2;
-
-                    previousblock2 = previousblock;
-
-                    previousblock = selection;
-
-                    preview = selection;
-
-                    newpreview = false;
-                }
-            }
-            if (spawnedBlock == null)
-            {
-                spawnedBlock = Instantiate(preview, spawnPoint.transform.position, Quaternion.identity);
-
-                newpreview = true;
-                Destroy(previewblock.gameObject);
+                newpreview = false;
             }
         }
-
-        if (difficulty > 9999999)
+        if (spawnedBlock == null)
         {
-            if (newpreview == true)
-            {
-                Block selection = possibleBlocksHard[Random.Range(0, possibleBlocksHard.Length)];
-                if ((selection == previousblock) || (selection == previousblock2) || (selection == previousblock3))
-                {
+            spawnedBlock = Instantiate(preview, spawnPoint.transform.position, Quaternion.identity);
 
-                }
-                else
-                {
-                    previewblock = Instantiate(selection, previewspawn.transform.position, Quaternion.identity);
-                    previewblock.enabled = false;
-
-                    previousblock3 = previousblock2;
-
-                    previousblock2 = previousblock;
-
-                    previousblock = selection;
-
-                    preview = selection;
-
-                    newpreview = false;
-                }
-            }
-            if (spawnedBlock == null)
-            {
-                spawnedBlock = Instantiate(preview, spawnPoint.transform.position, Quaternion.identity);
-
-                newpreview = true;
-                Destroy(previewblock.gameObject);
-            }
+            newpreview = true;
+            Debug.Log("Destroys preview");
+            Destroy(previewblock.gameObject);
         }
-        difficulty = Time.time;
     }
 }
