@@ -3,14 +3,15 @@ using TMPro;
 using UnityEngine;
 
 public class SharkAttack : MonoBehaviour {
-
     public TMP_Text text;
     public CondoGrid condoGrid;
 
     private float timeReduction;
-    private bool attacking = false;
 
     private float _timeUntilAttack;
+
+    public static bool SHARKATTACK;
+    public static bool sharkAttacKShouldIncreaseCombo;
 
     private float timeUntilAttack {
         get { return _timeUntilAttack; }
@@ -25,30 +26,40 @@ public class SharkAttack : MonoBehaviour {
         timeUntilAttack = timeReduction;
     }
 
-    void Update() {
-        if (attacking)
+    private void Update() {
+        if (SHARKATTACK)
             return;
-        
+
+        if (Input.GetKeyDown(KeyCode.Backspace)) {
+            SuddenSharkAttack();
+            return;
+        }
+
         timeUntilAttack -= Time.deltaTime;
 
         if (timeUntilAttack < 0f) {
-            StartCoroutine(SharkAttackRoutine());
+            StartCoroutine(SharkAttackRoutine(false));
         }
     }
 
-    private IEnumerator SharkAttackRoutine() {
-        attacking = true;
+    public void SuddenSharkAttack() {
+        StartCoroutine(SharkAttackRoutine(true));
+    }
+
+    private IEnumerator SharkAttackRoutine(bool causedByHitTop) {
+        SHARKATTACK = true;
+        sharkAttacKShouldIncreaseCombo = causedByHitTop;
         text.text = "SHARK ATTACK";
-        
+
         yield return new WaitForSeconds(1f);
-        
+
         condoGrid.SharkEatBottonRow();
-        attacking = false;
+        SHARKATTACK = false;
 
         timeReduction -= Tweaks.Instance.timeBetweenSharkReductionEachTime;
         if (timeReduction < Tweaks.Instance.timeBetweenSharkAttacksMin)
             timeReduction = Tweaks.Instance.timeBetweenSharkAttacksMin;
-        
+
         timeUntilAttack = timeReduction;
     }
 }

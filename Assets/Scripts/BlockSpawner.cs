@@ -26,6 +26,9 @@ public class BlockSpawner : MonoBehaviour
 
 
     private void Update() {
+        if (SharkAttack.SHARKATTACK)
+            return;
+        
         List<Block> blocksToUse = new List<Block>();
 
         blocksToUse.AddRange(possibleBlocks);

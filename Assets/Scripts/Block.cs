@@ -60,28 +60,25 @@ public class Block : MonoBehaviour
         
         startPos = transform.position;
         startRot = transform.rotation;
-        
-        if (Input.GetKey(KeyCode.W))
-        {
-            timeLeft -= Time.deltaTime * Tweaks.Instance.wSlowDown;
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            timeLeft -= Time.deltaTime * Tweaks.Instance.sSpeedUp;
-        }
-        else
-        {
-            timeLeft -= Time.deltaTime;
-        }
 
-        if (timeLeft < 0) 
-        {
-            transform.position += Vector3.down;
-            timeLeft = Tweaks.Instance.secondsBetweenMovingDown;
-        }
-        
-        CheckCollision(startPos, startRot, true);
+        if (!SharkAttack.SHARKATTACK) {
+            if (Input.GetKey(KeyCode.W)) {
+                timeLeft -= Time.deltaTime * Tweaks.Instance.wSlowDown;
+            }
+            else if (Input.GetKey(KeyCode.S)) {
+                timeLeft -= Time.deltaTime * Tweaks.Instance.sSpeedUp;
+            }
+            else {
+                timeLeft -= Time.deltaTime;
+            }
 
+            if (timeLeft < 0) {
+                transform.position += Vector3.down;
+                timeLeft = Tweaks.Instance.secondsBetweenMovingDown;
+            }
+
+            CheckCollision(startPos, startRot, true);
+        }
     }
 
     private void CheckCollision(Vector3 startPos, Quaternion startRot, bool isMoveDown) {
