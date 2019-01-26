@@ -23,3 +23,5 @@ MonoBehaviour:
   rotationSpeedMultiplier: 1.8
   GridX: 12
   GridY: 20
+  wSlowDown: 0.5
+  sSpeedUp: 10

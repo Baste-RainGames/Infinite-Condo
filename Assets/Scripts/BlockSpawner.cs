@@ -29,7 +29,7 @@ public class BlockSpawner : MonoBehaviour {
             if (difficulty <= 9999)
             {
                 Block selection = possibleBlocks[Random.Range(0, possibleBlocks.Length)];
-                 
+                
                 if ((selection == previousblock) || (selection == previousblock2) || (selection == previousblock3))
                     {
 

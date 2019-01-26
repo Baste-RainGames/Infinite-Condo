@@ -25,6 +25,9 @@ public class Tweaks : ScriptableObject
     public float rotationSpeedMultiplier;
     public int GridX;
     public int GridY;
+    public float wSlowDown = 0.5f;
+    public float sSpeedUp = 3f;
+    public bool showVisualization;
 
 
     public static Color GetColor(RoomType type) {
