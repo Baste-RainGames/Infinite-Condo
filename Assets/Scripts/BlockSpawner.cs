@@ -14,9 +14,9 @@ public class BlockSpawner : MonoBehaviour
 
     public Transform previewspawn;
 
-    private Block previewblock;
+    public Block previewblock;
 
-    private Block spawnedBlock;
+    public Block spawnedBlock;
 
     private bool newpreview = true;
 
@@ -65,7 +65,10 @@ public class BlockSpawner : MonoBehaviour
             spawnedBlock = Instantiate(preview, spawnPoint.transform.position, Quaternion.identity);
 
             newpreview = true;
-            Destroy(previewblock.gameObject);
+            if(previewblock != null)
+                Destroy(previewblock.gameObject);
+            else
+                Debug.LogError("Help no preview block!");
         }
     }
 }

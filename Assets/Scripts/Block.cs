@@ -9,6 +9,9 @@ public class Block : MonoBehaviour
     public Collider2D myCollider;
     public BlockData blockData;
 
+    public SpriteRenderer rendererWhileFalling;
+    public SpriteRenderer rendererWhilePlaced;
+
     public SpriteRenderer visible0;
     public SpriteRenderer visible90;
     public SpriteRenderer visible180;
@@ -113,6 +116,12 @@ public class Block : MonoBehaviour
                 else if (Mathf.Abs(rot - 270) < .01f) {
                     if (visible270 != null)
                         visible270.enabled = true;
+                }
+
+                if (rendererWhilePlaced != null) {
+                    if (rendererWhileFalling != null)
+                        rendererWhileFalling.enabled = false;
+                    rendererWhilePlaced.enabled = true;
                 }
 
                 enabled = false;
