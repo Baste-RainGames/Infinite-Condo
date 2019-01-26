@@ -11,7 +11,12 @@ public class BlockData : MonoBehaviour {
         public int xOffset;
         public int yOffset;
 
-        public bool stair0, stair90, stair180, stair270;
+        public bool stairR0, stairR90, stairR180, stairR270;
+
+        public bool stairL0   => stairR270;
+        public bool stairL90  => stairR0;
+        public bool stairL180 => stairR90;
+        public bool stairL270 => stairR180;
     }
 
     private void OnDrawGizmos() {
@@ -28,7 +33,55 @@ public class BlockData : MonoBehaviour {
                 Gizmos.DrawLine(position, position + new Vector3(0.4f, 0f, 0f));
                 Gizmos.DrawLine(position, position + new Vector3(-0.4f, 0f, 0f));
             }
+
+            if (HasStairsUpRight(piece)) {
+                Gizmos.DrawLine(position, position + new Vector3(0.4f, 0.4f, 0f));
+            }
+            
+            if (HasStairsUpLeft(piece)) {
+                Gizmos.DrawLine(position, position + new Vector3(-0.4f, 0.4f, 0f));
+            }
         }
+    }
+
+    private bool HasStairsUpRight(BlockDataPiece piece) {
+        if (Math.Abs(transform.eulerAngles.z) < .01f) {
+            return piece.stairR0;
+        }
+        
+        if (Math.Abs(transform.eulerAngles.z - 90f) < .01f) {
+            return piece.stairR90;
+        }
+        
+        if (Math.Abs(transform.eulerAngles.z - 180f) < .01f) {
+            return piece.stairR180;
+        }
+        
+        if (Math.Abs(transform.eulerAngles.z - 270f) < .01f) {
+            return piece.stairR270;
+        }
+
+        return false;
+    }
+    
+    private bool HasStairsUpLeft(BlockDataPiece piece) {
+        if (Math.Abs(transform.eulerAngles.z) < .01f) {
+            return piece.stairL0;
+        }
+        
+        if (Math.Abs(transform.eulerAngles.z - 90f) < .01f) {
+            return piece.stairL90;
+        }
+        
+        if (Math.Abs(transform.eulerAngles.z - 180f) < .01f) {
+            return piece.stairL180;
+        }
+        
+        if (Math.Abs(transform.eulerAngles.z - 270f) < .01f) {
+            return piece.stairL270;
+        }
+
+        return false;
     }
 
     private Vector3 GetPosition(BlockDataPiece piece) {

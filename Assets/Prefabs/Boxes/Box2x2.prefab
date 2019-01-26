@@ -63,7 +63,7 @@ MonoBehaviour:
   pieces:
   - xOffset: 0
     yOffset: 0
-    stair0: 0
+    stair0: 1
     stair90: 0
     stair180: 0
     stair270: 0
