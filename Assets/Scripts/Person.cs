@@ -61,6 +61,7 @@ public class Person : MonoBehaviour {
     }
 
     public Vector3 startPos;
+    public Vector3 targetPos;
     private IEnumerator MoveAlong(List<(int, int)> path) {
         isMoving = true;
         animator.SetBool("Move", true);
@@ -72,13 +73,18 @@ public class Person : MonoBehaviour {
             var (x, y) = point;
 
             startPos = new Vector3(posX, posY, -1);
-            var targetPos = new Vector3(x, y, -1);
+            targetPos = new Vector3(x, y, -1);
 
             var startScale = transform.localScale;
             var targetScale = new Vector3(targetPos.x > startPos.x ? -1 : 1, 1, 1);
 
             var move_t = 0f;
             while (move_t < 1) {
+                if (SharkAttack.SHARKATTACK) {
+                    yield return null;
+                    continue;
+                }
+                
                 move_t += Time.deltaTime * Tweaks.Instance.moveSpeed;
                 transform.position = Vector3.Lerp(startPos, targetPos, move_t);
                 transform.localScale = Vector3.Lerp(startScale, targetScale, move_t * Tweaks.Instance.rotationSpeedMultiplier);

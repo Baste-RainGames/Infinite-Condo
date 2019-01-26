@@ -10,13 +10,11 @@ public class BlockSpawner : MonoBehaviour
 
     public Block[] additionalBlocksHard;
 
-    public Transform spawnPoint;
-
     public Transform previewspawn;
 
-    public Block previewblock;
+    private Block previewblock;
 
-    public Block spawnedBlock;
+    private Block spawnedBlock;
 
     private bool newpreview = true;
 
@@ -28,6 +26,9 @@ public class BlockSpawner : MonoBehaviour
 
 
     private void Update() {
+        if (SharkAttack.SHARKATTACK)
+            return;
+        
         List<Block> blocksToUse = new List<Block>();
 
         blocksToUse.AddRange(possibleBlocks);
@@ -62,7 +63,9 @@ public class BlockSpawner : MonoBehaviour
         }
         if (spawnedBlock == null || !spawnedBlock.enabled)
         {
-            spawnedBlock = Instantiate(preview, spawnPoint.transform.position, Quaternion.identity);
+            var spawnPoint = new Vector3(Mathf.Floor(Tweaks.Instance.GridX / 2f) + 0.5f, Mathf.Floor(Tweaks.Instance.GridY) - 0.5f);
+            
+            spawnedBlock = Instantiate(preview, spawnPoint, Quaternion.identity);
 
             newpreview = true;
             if(previewblock != null)

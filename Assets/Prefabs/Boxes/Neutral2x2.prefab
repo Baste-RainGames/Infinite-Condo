@@ -47,6 +47,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myCollider: {fileID: 6783780391563744224}
   blockData: {fileID: 0}
+  rendererWhileFalling: {fileID: 0}
+  rendererWhilePlaced: {fileID: 0}
+  moreRenderersWhilePlaced: []
+  visible0: {fileID: 0}
+  visible90: {fileID: 0}
+  visible180: {fileID: 0}
+  visible270: {fileID: 0}
 --- !u!114 &2253042525921632901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,7 +110,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6783780391563744229}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: -2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 6783780390555371394}

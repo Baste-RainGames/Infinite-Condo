@@ -11,6 +11,7 @@ public class Block : MonoBehaviour
 
     public SpriteRenderer rendererWhileFalling;
     public SpriteRenderer rendererWhilePlaced;
+    public SpriteRenderer[] moreRenderersWhilePlaced = new SpriteRenderer[0];
 
     public SpriteRenderer visible0;
     public SpriteRenderer visible90;
@@ -59,28 +60,25 @@ public class Block : MonoBehaviour
         
         startPos = transform.position;
         startRot = transform.rotation;
-        
-        if (Input.GetKey(KeyCode.W))
-        {
-            timeLeft -= Time.deltaTime * Tweaks.Instance.wSlowDown;
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            timeLeft -= Time.deltaTime * Tweaks.Instance.sSpeedUp;
-        }
-        else
-        {
-            timeLeft -= Time.deltaTime;
-        }
 
-        if (timeLeft < 0) 
-        {
-            transform.position += Vector3.down;
-            timeLeft = Tweaks.Instance.secondsBetweenMovingDown;
-        }
-        
-        CheckCollision(startPos, startRot, true);
+        if (!SharkAttack.SHARKATTACK) {
+            if (Input.GetKey(KeyCode.W)) {
+                timeLeft -= Time.deltaTime * Tweaks.Instance.wSlowDown;
+            }
+            else if (Input.GetKey(KeyCode.S)) {
+                timeLeft -= Time.deltaTime * Tweaks.Instance.sSpeedUp;
+            }
+            else {
+                timeLeft -= Time.deltaTime;
+            }
 
+            if (timeLeft < 0) {
+                transform.position += Vector3.down;
+                timeLeft = Tweaks.Instance.secondsBetweenMovingDown;
+            }
+
+            CheckCollision(startPos, startRot, true);
+        }
     }
 
     private void CheckCollision(Vector3 startPos, Quaternion startRot, bool isMoveDown) {
@@ -121,12 +119,26 @@ public class Block : MonoBehaviour
                 if (rendererWhilePlaced != null) {
                     if (rendererWhileFalling != null)
                         rendererWhileFalling.enabled = false;
+                    rendererWhilePlaced.gameObject.SetActive(true);
                     rendererWhilePlaced.enabled = true;
+                }
+
+                if (AnyPartHitsSharkAttackPoint()) {
+                    FindObjectOfType<SharkAttack>().SuddenSharkAttack();
                 }
 
                 enabled = false;
             }
         }
+    }
+
+    private bool AnyPartHitsSharkAttackPoint() {
+        foreach (var piece in blockData.pieces) {
+            if (blockData.GetPosition(piece).y >= Tweaks.Instance.SharkAttackYPoint)
+                return true;
+        }
+
+        return false;
     }
 
     public bool CompletelyUnderWorld() {

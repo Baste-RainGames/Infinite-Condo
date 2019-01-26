@@ -48,8 +48,10 @@ public class CondoGrid : MonoBehaviour {
             for (int y = 0; y < blocks.GetLength(1); y++) {
                 var blockInfo = blocks[x, y];
 
+                /*
                 if (blockInfo.roomType == RoomType.NoRoom)
                     continue;
+                */
 
                 var squareCopy = Instantiate(square);
                 representation[x, y] = squareCopy;
@@ -232,6 +234,7 @@ public class CondoGrid : MonoBehaviour {
 
                 //start pos of current downmovement
                 person.startPos -= new Vector3(0f, 2f, 0f);
+                person.targetPos -= new Vector3(0f, 2f, 0f);
             }
         }
 

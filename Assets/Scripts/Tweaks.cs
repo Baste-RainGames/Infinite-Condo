@@ -25,6 +25,7 @@ public class Tweaks : ScriptableObject
     public float rotationSpeedMultiplier;
     public int GridX;
     public int GridY;
+    public int SharkAttackYPoint;
     public float wSlowDown = 0.5f;
     public float sSpeedUp = 3f;
     public bool showVisualization;
@@ -38,6 +39,8 @@ public class Tweaks : ScriptableObject
     public float timeBetweenSharkAttacksStart;
     public float timeBetweenSharkAttacksMin;
     public float timeBetweenSharkReductionEachTime;
+    [Header("Should match anim")]
+    public float sharkAttackDuration;
 
 
     public static Color GetColor(RoomType type) {

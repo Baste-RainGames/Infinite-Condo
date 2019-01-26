@@ -23,6 +23,7 @@ MonoBehaviour:
   rotationSpeedMultiplier: 1.8
   GridX: 12
   GridY: 20
+  SharkAttackYPoint: 17
   wSlowDown: 0.5
   sSpeedUp: 10
   showVisualization: 0
@@ -39,3 +40,4 @@ MonoBehaviour:
   timeBetweenSharkAttacksStart: 60
   timeBetweenSharkAttacksMin: 30
   timeBetweenSharkReductionEachTime: 5
+  sharkAttackDuration: 3.5
