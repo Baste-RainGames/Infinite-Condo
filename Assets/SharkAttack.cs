@@ -44,8 +44,11 @@ public class SharkAttack : MonoBehaviour {
         
         condoGrid.SharkEatBottonRow();
         attacking = false;
+
+        timeReduction -= Tweaks.Instance.timeBetweenSharkReductionEachTime;
+        if (timeReduction < Tweaks.Instance.timeBetweenSharkAttacksMin)
+            timeReduction = Tweaks.Instance.timeBetweenSharkAttacksMin;
         
-        timeReduction = Mathf.Min(timeReduction - Tweaks.Instance.timeBetweenSharkReductionEachTime, Tweaks.Instance.timeBetweenSharkAttacksMin);
         timeUntilAttack = timeReduction;
     }
 }
