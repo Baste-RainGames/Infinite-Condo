@@ -46,7 +46,6 @@ public class BlockSpawner : MonoBehaviour
             }
             else
             {
-                Debug.Log("Creates preview");
                 previewblock = Instantiate(selection, previewspawn.transform.position, Quaternion.identity);
                 previewblock.enabled = false;
 
@@ -61,12 +60,11 @@ public class BlockSpawner : MonoBehaviour
                 newpreview = false;
             }
         }
-        if (spawnedBlock == null)
+        if (spawnedBlock == null || !spawnedBlock.enabled)
         {
             spawnedBlock = Instantiate(preview, spawnPoint.transform.position, Quaternion.identity);
 
             newpreview = true;
-            Debug.Log("Destroys preview");
             Destroy(previewblock.gameObject);
         }
     }

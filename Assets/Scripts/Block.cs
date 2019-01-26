@@ -114,9 +114,18 @@ public class Block : MonoBehaviour
                     if (visible270 != null)
                         visible270.enabled = true;
                 }
-                
-                Destroy(this);
+
+                enabled = false;
             }
         }
+    }
+
+    public bool CompletelyUnderWorld() {
+        foreach (var piece in blockData.pieces) {
+            if (blockData.GetPosition(piece).y >= 0)
+                return false;
+        }
+
+        return true;
     }
 }

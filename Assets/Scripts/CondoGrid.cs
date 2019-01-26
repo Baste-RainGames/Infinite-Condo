@@ -12,7 +12,7 @@ public class CondoGrid : MonoBehaviour {
     public GridBlock[,] blocks;
     public GameObject[,] representation;
 
-    public List<GameObject> allPlacedBlocks = new List<GameObject>();
+    public List<Block> allPlacedBlocks = new List<Block>();
 
     private void Awake() {
         blocks = new GridBlock[Tweaks.Instance.GridX, Tweaks.Instance.GridY];
@@ -124,7 +124,7 @@ public class CondoGrid : MonoBehaviour {
     }
 
     public void PlaceBlock(Block block) {
-        allPlacedBlocks.Add(block.gameObject);
+        allPlacedBlocks.Add(block);
         var blockData = block.blockData;
         foreach (var piece in blockData.pieces) {
             var floatPosition = blockData.GetPosition(piece);
@@ -219,6 +219,8 @@ public class CondoGrid : MonoBehaviour {
     }
 
     public void SharkEatBottonRow() {
+        var score = 0;
+        
         var allPeople = FindObjectsOfType<Person>();
         foreach (var person in allPeople) {
             if (person.posY == 0 || person.posY == 1) {
@@ -233,9 +235,19 @@ public class CondoGrid : MonoBehaviour {
             }
         }
 
-        foreach (var placedBlock in allPlacedBlocks) {
+        for (var i = allPlacedBlocks.Count - 1; i >= 0; i--) {
+            var placedBlock = allPlacedBlocks[i];
             placedBlock.transform.position -= new Vector3(0f, 2f, 0f);
+
+            if (placedBlock.CompletelyUnderWorld()) {
+                score += ScoreSystem.instance.GetScoreFor(placedBlock);
+
+                Destroy(placedBlock.gameObject);
+                allPlacedBlocks.RemoveAt(i);
+            }
         }
+
+        ScoreSystem.IncreaseScore(score);
 
         for (int y = 0; y < blocks.GetLength(1) - 2; y++)
         for (int x = 0; x < blocks.GetLength(0); x++) {
