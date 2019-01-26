@@ -54,11 +54,11 @@ public class Block : MonoBehaviour
         
         if (Input.GetKey(KeyCode.W))
         {
-            timeLeft -= Time.deltaTime * 0.5f;
+            timeLeft -= Time.deltaTime * Tweaks.Instance.wSlowDown;
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            timeLeft -= Time.deltaTime * 3;
+            timeLeft -= Time.deltaTime * Tweaks.Instance.sSpeedUp;
         }
         else
         {

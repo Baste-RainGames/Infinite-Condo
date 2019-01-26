@@ -37,9 +37,7 @@ public class BlockSpawner : MonoBehaviour {
             {
                 if (newpreview == true) { 
                 Block selection = possibleBlocks[Random.Range(0, possibleBlocks.Length)];
-
-                    if ((selection == previousblock) || (selection == previousblock2) || (selection == previousblock3))
-                    {
+                    if ((selection == previousblock) || (selection == previousblock2) || (selection == previousblock3)) { 
 
                     }
                     else

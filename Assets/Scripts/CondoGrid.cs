@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -40,6 +41,10 @@ public class CondoGrid : MonoBehaviour
             if(go != null)
                 Destroy(go);
         }
+
+        if (!Tweaks.Instance.showVisualization)
+            return;
+            
         
         for (int x = 0; x < blocks.GetLength(0); x++)
         for (int y = 0; y < blocks.GetLength(1); y++) {
@@ -145,10 +150,33 @@ public class CondoGrid : MonoBehaviour
 
         // enable walking on top of placed pieces
         foreach (var piece in blockData.pieces) {
+            var floatPosition = blockData.GetPosition(piece);
             
+            var (onTopX, onTopY) = (Mathf.RoundToInt(floatPosition.x), Mathf.RoundToInt(floatPosition.y + 1));
+            
+            if (!IsInRange(onTopX, onTopY))
+                continue;
+            if (blocks[onTopX, onTopY].roomType != RoomType.NoRoom)
+                continue;
+            if (blockData.pieces.Any(SamePos))
+                continue;
+
+            blocks[onTopX, onTopY] = new GridBlock {
+                roomType = RoomType.Empty,
+                canMoveLeft = true,
+                canMoveRight = true
+            };
+            
+            bool SamePos(BlockDataPiece otherPiece) {
+                var otherPiecePos = blockData.GetPosition(otherPiece);
+                var (otherX, otherY) = (Mathf.RoundToInt(otherPiecePos.x), Mathf.RoundToInt(otherPiecePos.y));
+    
+                return onTopX == otherX && onTopY == otherY;
+            }
         }
         
         BuildVisualization();
+
     }
 
     private List<(int, int)> WalkBackFrom(int x, int y, int startX, int startY, (int, int)[,] prevTile) {

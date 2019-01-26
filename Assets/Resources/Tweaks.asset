@@ -23,3 +23,14 @@ MonoBehaviour:
   rotationSpeedMultiplier: 1.8
   GridX: 12
   GridY: 20
+  wSlowDown: 0.5
+  sSpeedUp: 10
+  showVisualization: 0
+  timeBetweenSwitchDesiredRoom: 2
+  bathroomDesireSprite: {fileID: 21300000, guid: 625a90cf743bf2e4c80914773fad946c,
+    type: 3}
+  bedroomDesireSprite: {fileID: 21300000, guid: 10383b838a761884da3d76687adcc719,
+    type: 3}
+  livingRoomDesireSprite: {fileID: 21300000, guid: 1ece49fad4ab69745a29aa425569c6d6,
+    type: 3}
+  gymDesireSprite: {fileID: 21300000, guid: 6ad59b2342330dd4c81c7b887be8a19a, type: 3}

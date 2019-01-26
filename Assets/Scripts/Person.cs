@@ -1,17 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+using static RoomType;
+using Random = UnityEngine.Random;
 
 public class Person : MonoBehaviour {
 
+    public SpriteRenderer desiredRoomRenderer;
+    
     private CondoGrid condo;
     private int posX, posY;
     private int startX, startY;
     private Animator animator;
 
     private bool isMoving;
-    public RoomType desiredRoomType = RoomType.Bedroom;
-
+    private bool hasDesire;
+    private RoomType desiredRoomType = NoRoom;
+    
     private void Awake() {
         condo = FindObjectOfType<CondoGrid>();
         startX = posX = Mathf.RoundToInt(transform.position.x);
@@ -20,17 +28,18 @@ public class Person : MonoBehaviour {
         animator = GetComponentInChildren<Animator>();
     }
 
+    private void Start() {
+        StartCoroutine(SelectDesire());
+    }
+
     private void Update() {
         if (Input.GetKeyDown(KeyCode.R) && Input.GetKey(KeyCode.LeftControl)) {
-            posX = startX;
-            posY = startY;
-            transform.position = new Vector3(posX, posY, -1);
-            StopAllCoroutines();
-            isMoving = false;
-            animator.SetBool("Move", false);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+
+        ShowDesiredRoom();
         
-        if (isMoving)
+        if (isMoving || !hasDesire)
             return;
         if (condo.RoomTypeAt(posX, posY) == desiredRoomType)
             return;
@@ -70,5 +79,49 @@ public class Person : MonoBehaviour {
 
         isMoving = false;
         animator.SetBool("Move", false);
+        hasDesire = false;
+
+        StartCoroutine(SelectDesire());
+    }
+
+    private IEnumerator SelectDesire() {
+        yield return new WaitForSeconds(Tweaks.Instance.timeBetweenSwitchDesiredRoom);
+
+        var lastDesired = desiredRoomType;
+        var nextDesired = lastDesired;
+
+        while (nextDesired == lastDesired) {
+            nextDesired = (RoomType) Random.Range((int) Bathroom, (int) System.Enum.GetValues(typeof(RoomType)).Length);
+        }
+
+        desiredRoomType = nextDesired;
+        hasDesire = true;
+    }
+    
+    
+    private void ShowDesiredRoom() {
+        if (!hasDesire || desiredRoomType == NoRoom || desiredRoomType == Empty) {
+            desiredRoomRenderer.enabled = false;
+            return;
+        }
+        
+        desiredRoomRenderer.enabled = true;
+
+        switch (desiredRoomType) {
+            case Bathroom:
+                desiredRoomRenderer.sprite = Tweaks.Instance.bathroomDesireSprite;
+                break;
+            case Bedroom:
+                desiredRoomRenderer.sprite = Tweaks.Instance.bedroomDesireSprite;
+                break;
+            case LivingRoom:
+                desiredRoomRenderer.sprite = Tweaks.Instance.livingRoomDesireSprite;
+                break;
+            case Gym:
+                desiredRoomRenderer.sprite = Tweaks.Instance.gymDesireSprite;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 }
