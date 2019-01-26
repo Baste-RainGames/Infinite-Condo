@@ -1,17 +1,37 @@
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 public class ScoreSystem : MonoBehaviour{
     
     public static ScoreSystem instance;
 
-    public TMP_Text text;
+    public TMP_Text scoreText;
+    public TMP_Text comboText;
+
+    private int _comboCount = 1;
+    private int ComboCount {
+        get => _comboCount;
+        set {
+            _comboCount = value;
+            if (value == 1)
+                comboText.text = "";
+            
+            var str = "C";
+            for (int i = 1; i < value; i++) {
+                str += "-C";
+            }
+
+            str += "ondo!";
+            comboText.text = str;
+        }
+    }
 
     private int _score;
     private int Score {
-        get { return _score; }
+        get => _score;
         set {
-            text.text = "Score: " + value;
+            scoreText.text = "Score: " + value;
             _score = value;
         }
     }
@@ -22,10 +42,18 @@ public class ScoreSystem : MonoBehaviour{
     }
 
     public int GetScoreFor(Block block) {
-        return 10;
+        return 10 * ComboCount;
     }
 
     public static void IncreaseScore(int score) {
         instance.Score += score;
+    }
+
+    public void IncreaseComboCount() {
+        ComboCount++;
+    }
+
+    public void ResetComboCount() {
+        ComboCount = 1;
     }
 }

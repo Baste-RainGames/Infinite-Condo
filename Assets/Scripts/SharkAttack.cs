@@ -12,7 +12,6 @@ public class SharkAttack : MonoBehaviour {
     private float _timeUntilAttack;
 
     public static bool SHARKATTACK;
-    public static bool sharkAttacKShouldIncreaseCombo;
 
     private float timeUntilAttack {
         get { return _timeUntilAttack; }
@@ -49,7 +48,10 @@ public class SharkAttack : MonoBehaviour {
 
     private IEnumerator SharkAttackRoutine(bool causedByHitTop) {
         SHARKATTACK = true;
-        sharkAttacKShouldIncreaseCombo = causedByHitTop;
+        if (causedByHitTop)
+            ScoreSystem.instance.IncreaseComboCount();
+        else
+            ScoreSystem.instance.ResetComboCount();
         text.text = "SHARK ATTACK";
 
         sharkAnim.SetTrigger("Attack");
