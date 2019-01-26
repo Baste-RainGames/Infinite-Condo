@@ -42,9 +42,10 @@ public class Person : MonoBehaviour {
         
         if (isMoving || !hasDesire)
             return;
-        if (condo.RoomTypeAt(posX, posY) == desiredRoomType)
-            return;
-        
+        if (condo.RoomTypeAt(posX, posY) == desiredRoomType) {
+            StartCoroutine(SelectDesire());
+        }
+
         var path = condo.FindPathTo(posX, posY, desiredRoomType);
 
         if (path != null) {
@@ -81,12 +82,12 @@ public class Person : MonoBehaviour {
 
         isMoving = false;
         animator.SetBool("Move", false);
-        hasDesire = false;
 
         StartCoroutine(SelectDesire());
     }
 
     private IEnumerator SelectDesire() {
+        hasDesire = false;
         yield return new WaitForSeconds(Tweaks.Instance.timeBetweenSwitchDesiredRoom);
 
         var lastDesired = desiredRoomType;
