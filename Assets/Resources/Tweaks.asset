@@ -36,3 +36,4 @@ MonoBehaviour:
   gymDesireSprite: {fileID: 21300000, guid: 6ad59b2342330dd4c81c7b887be8a19a, type: 3}
   mediumDifficultyTime: 60
   hardDifficultyTime: 120
+  timeBetweenSharkAttacks: 30
