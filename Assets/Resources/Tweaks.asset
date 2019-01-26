@@ -40,3 +40,4 @@ MonoBehaviour:
   timeBetweenSharkAttacksStart: 60
   timeBetweenSharkAttacksMin: 30
   timeBetweenSharkReductionEachTime: 5
+  sharkAttackDuration: 3.5

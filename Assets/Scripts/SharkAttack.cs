@@ -5,6 +5,7 @@ using UnityEngine;
 public class SharkAttack : MonoBehaviour {
     public TMP_Text text;
     public CondoGrid condoGrid;
+    public Animator sharkAnim;
 
     private float timeReduction;
 
@@ -51,7 +52,8 @@ public class SharkAttack : MonoBehaviour {
         sharkAttacKShouldIncreaseCombo = causedByHitTop;
         text.text = "SHARK ATTACK";
 
-        yield return new WaitForSeconds(1f);
+        sharkAnim.SetTrigger("Attack");
+        yield return new WaitForSeconds(Tweaks.Instance.sharkAttackDuration);
 
         condoGrid.SharkEatBottonRow();
         SHARKATTACK = false;

@@ -12,9 +12,9 @@ public class BlockSpawner : MonoBehaviour
 
     public Transform previewspawn;
 
-    public Block previewblock;
+    private Block previewblock;
 
-    public Block spawnedBlock;
+    private Block spawnedBlock;
 
     private bool newpreview = true;
 

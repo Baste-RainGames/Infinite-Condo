@@ -39,6 +39,8 @@ public class Tweaks : ScriptableObject
     public float timeBetweenSharkAttacksStart;
     public float timeBetweenSharkAttacksMin;
     public float timeBetweenSharkReductionEachTime;
+    [Header("Should match anim")]
+    public float sharkAttackDuration;
 
 
     public static Color GetColor(RoomType type) {
