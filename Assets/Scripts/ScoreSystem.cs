@@ -20,11 +20,11 @@ public class ScoreSystem : MonoBehaviour{
         get => _comboCount;
         set {
             _comboCount = value;
-            if (value == 1)
+            if (value == 2)
                 comboText.text = "";
             
             var str = "C";
-            for (int i = 1; i < value; i++) {
+            for (int i = 2; i < value; i++) {
                 str += "-C";
             }
 
