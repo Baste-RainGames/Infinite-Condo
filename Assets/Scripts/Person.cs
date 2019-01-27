@@ -65,19 +65,15 @@ public class Person : MonoBehaviour {
         switch (desiredRoomType)
         {
             case RoomType.Bathroom:
-                Debug.Log("Bathroom");
                 MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Toilet"]);
                 break;
             case RoomType.Bedroom:
-                Debug.Log("Bedroom");
                 MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Bedroom"]);
                 break;
             case RoomType.Gym:
-                Debug.Log("Gym");
                 MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Gym"]);
                 break;
             case RoomType.LivingRoom:
-                Debug.Log("Livingroom");
                 MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Bookpaper"]);
                 break;
             default:
