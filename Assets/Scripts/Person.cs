@@ -81,20 +81,23 @@ public class Person : MonoBehaviour {
         }
     }
 
-    public Vector3 startPos;
-    public Vector3 targetPos;
+    [NonSerialized]
+    public bool shouldCompensateForBottomRowEaten;
     private IEnumerator MoveAlong(List<(int, int)> path) {
         isMoving = true;
         animator.SetBool("Move", true);
         head.sharedMaterial = head_move;
         body.sharedMaterial = body_move;
         yield return new WaitForSeconds(Tweaks.Instance.timeBetweenMoves);
+
+        int rowOffsetForSharks = 0;
         
         foreach (var point in path) {
             var (x, y) = point;
+            y -= 2 * rowOffsetForSharks;
 
-            startPos = new Vector3(posX, posY, -1);
-            targetPos = new Vector3(x, y, -1);
+            var startPos = new Vector3(posX, posY, transform.position.z);
+            var targetPos = new Vector3(x, y, transform.position.z);
 
             var startScale = transform.localScale;
             var targetScale = new Vector3(targetPos.x > startPos.x ? -1 : 1, 1, 1);
@@ -104,6 +107,13 @@ public class Person : MonoBehaviour {
                 if (SharkAttack.SHARKATTACK) {
                     yield return null;
                     continue;
+                }
+
+                if (shouldCompensateForBottomRowEaten) {
+                    shouldCompensateForBottomRowEaten = false;
+                    startPos -= new Vector3(0f, 2f, 0f);
+                    targetPos -= new Vector3(0f, 2f, 0f);
+                    rowOffsetForSharks++;
                 }
                 
                 move_t += Time.deltaTime * Tweaks.Instance.moveSpeed;

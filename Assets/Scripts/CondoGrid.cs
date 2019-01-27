@@ -309,11 +309,7 @@ public class CondoGrid : MonoBehaviour {
             }
             else {
                 toMoveDown.Add(person.transform);
-                person.posY -= 2;
-
-                //start pos of current downmovement
-                person.startPos -= new Vector3(0f, 2f, 0f);
-                person.targetPos -= new Vector3(0f, 2f, 0f);
+                person.shouldCompensateForBottomRowEaten = true;
             }
         }
 
