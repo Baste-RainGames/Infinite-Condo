@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114898822295708352}
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   EditorEvents:
   - {fileID: 114913526261823826}
   - {fileID: 114578805428423436}
@@ -52,6 +52,7 @@ MonoBehaviour:
   - {fileID: 114368387508694594}
   MasterBanks:
   - {fileID: 114774132672370900}
+  - {fileID: 114650175054000730}
   StringsBanks:
   - {fileID: 114898822295708352}
   stringsBankWriteTime: 636841886297017184
@@ -71,12 +72,12 @@ MonoBehaviour:
   Path: event:/Soundeffects/Condo
   guid: 780bf7f6c0bdaa408aaa6b0d669ed978
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114807115733338144}
+  - {fileID: 114091524895759942}
   MinDistance: 0
   MaxDistance: 0
   Length: 1482
@@ -95,7 +96,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/CatSad
   guid: 644731659c6b134bbe6a5cc3ad898cc8
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -103,6 +104,22 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1718
+--- !u!114 &114091524895759942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Repeat
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114106938390870070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,14 +135,14 @@ MonoBehaviour:
   Path: event:/Soundtracks/MainTheme
   guid: 8a4206517bf8ae409154068d603c8f69
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114524556509266052}
-  - {fileID: 114585910962421428}
-  - {fileID: 114850208257267302}
+  - {fileID: 114874596938930476}
+  - {fileID: 114799571155119654}
+  - {fileID: 114464706649969262}
   MinDistance: 0
   MaxDistance: 0
   Length: 122181
@@ -144,7 +161,7 @@ MonoBehaviour:
   Path: event:/Soundtracks/GameOver
   guid: 55f47644e92dac4d8cab03effdede8ad
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -152,6 +169,22 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 10914
+--- !u!114 &114134455165283748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Repeat
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114145764071635706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +200,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/CoolguyActivate
   guid: 354e71de8550f04dbeb59367dc03d9b6
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -190,7 +223,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/DogSad
   guid: 4557a70e737b4943a37ee2a12c5ce73b
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -213,7 +246,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/Toilet
   guid: 78bde4a7ccd7074bb672c92054138f83
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -236,7 +269,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/Explosion
   guid: 21ef32e71fefad449a6242e098742b7d
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -244,6 +277,25 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 4281
+--- !u!114 &114220710445892056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Eier\workspace\Infinite Condo\Assets\FMOD\Master Bank.bank
+  lastModified: 636841886296997183
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 2178528
+  Exists: 1
 --- !u!114 &114237485826521892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,7 +311,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/Condobreaker
   guid: 2438d9b75e41244f9cea1f559c224304
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -282,7 +334,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/Bookpaper
   guid: fa002ef21f36c74795d970267ef05a34
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -290,6 +342,22 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2250
+--- !u!114 &114283316110078926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Pitch
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114286800771764242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,7 +373,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/Death2
   guid: a06cbd345114cf40b144655ac8aa283a
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -328,7 +396,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/CatActivate
   guid: fd4c286ee461734391b88852c5fd4d56
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -351,7 +419,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/Rotate
   guid: ee88df6173e5ab4ea2737c3237a447b5
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -374,7 +442,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/Coins1
   guid: bd9baf7acfd90a458f33c031e45736e6
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -397,7 +465,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/Rotate2
   guid: 7fa681809e51f94eaf0d0717b8083775
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -420,7 +488,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/DogActivate
   guid: 0d9ee06a46738a46b97870474731ac34
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -428,6 +496,38 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1075
+--- !u!114 &114464706649969262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: ToMain
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114466769351991634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: ToIntense
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114471687165507706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,7 +543,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/CoolguySad
   guid: e82db01b8a40884083a8e0773665e60c
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -466,7 +566,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/DropRoom
   guid: c2ea563d7f20a94cab98ffa2a1301ba6
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -490,6 +590,22 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114535464906466134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: ToIntro
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114578805428423436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,7 +621,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/Menu2
   guid: 0bd0748f5a18a04e89bde2807ab36a56
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -544,12 +660,12 @@ MonoBehaviour:
   Path: event:/Soundeffects/Points
   guid: 177143ede73a2e4cbc70f9d3992656a9
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114796591266340960}
+  - {fileID: 114891192324462522}
   MinDistance: 0
   MaxDistance: 0
   Length: 647
@@ -568,7 +684,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/Stairs
   guid: 6d20f06b6507f84998580378828096cd
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -591,7 +707,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/Death
   guid: 984f38138c53924c9fb096eddf422909
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -614,7 +730,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/WomanSad
   guid: 0c2ece7e0a7f7c4bbec57415d4f0348a
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -622,6 +738,25 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1303
+--- !u!114 &114650175054000730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Kevin\Documents\GitHub\Infinite-Condo\Assets\FMOD\Master Bank.bank
+  lastModified: 636841906977348098
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 2178528
+  Exists: 0
 --- !u!114 &114686101117359186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -637,7 +772,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/Door
   guid: e3fce87a6002dd47857d65de3f6c2259
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -660,7 +795,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/Alarm
   guid: 0e66e64ee48cfa49886a0016daa63329
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -668,6 +803,22 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 4369
+--- !u!114 &114708553990723304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: ToMain
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114756302993639452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -683,7 +834,7 @@ MonoBehaviour:
   Path: event:/Soundtracks/Victory
   guid: 7593550611dc074da89c10eed3f02618
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -709,7 +860,7 @@ MonoBehaviour:
   FileSizes:
   - Name: 
     Value: 2178528
-  Exists: 1
+  Exists: 0
 --- !u!114 &114789357895884410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,7 +876,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/Coins2
   guid: c01b07f3ab8b7340a95a2d4cee685c70
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -746,6 +897,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Pitch
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114799571155119654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: ToIntro
   Min: 0
   Max: 1
   Default: 0
@@ -796,7 +963,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/Gym
   guid: bb45651cef2ab44f95393df6891fc45e
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -819,7 +986,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/ManActivate
   guid: e95b440deb21854883a0a683b462a5f0
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -827,6 +994,38 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1504
+--- !u!114 &114874596938930476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: ToIntense
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114891192324462522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Pitch
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114898822295708352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -861,7 +1060,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/WomanActivate
   guid: 00b1530c586e0943a798b9d47c804da1
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -884,7 +1083,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/Bedroom
   guid: c6a2ab943ae4e949b691cd6576087284
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -907,7 +1106,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/Menu
   guid: 0f7d5bca9b6cae4286753a3d47b8e501
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -930,7 +1129,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/ManSad
   guid: 1dc00efbe531474f8abd7ded62ce935c
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -953,7 +1152,7 @@ MonoBehaviour:
   Path: event:/Soundeffects/FallingBox
   guid: 2c2f8315f056aa45b537359a8831ee9b
   Banks:
-  - {fileID: 114774132672370900}
+  - {fileID: 114220710445892056}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1

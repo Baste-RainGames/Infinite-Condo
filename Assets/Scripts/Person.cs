@@ -14,7 +14,6 @@ public class Person : MonoBehaviour {
     private CondoGrid condo;
     public int posX;
     public int posY;
-    private int startX, startY;
     private Animator animator;
 
     public Material head_idle, head_move, head_happy, head_dead;
@@ -28,8 +27,8 @@ public class Person : MonoBehaviour {
     
     private void Awake() {
         condo = FindObjectOfType<CondoGrid>();
-        startX = posX = Mathf.RoundToInt(transform.position.x);
-        startY = posY = Mathf.RoundToInt(transform.position.y);
+        posX = Mathf.RoundToInt(transform.position.x);
+        posY = Mathf.RoundToInt(transform.position.y);
 
         animator = GetComponentInChildren<Animator>();
         head.sharedMaterial = head_idle;

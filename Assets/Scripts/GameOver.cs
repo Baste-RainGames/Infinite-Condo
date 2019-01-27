@@ -1,9 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-public class GameOver : MonoBehaviour
-{
+public class GameOver : MonoBehaviour {
+    
+    public static bool GameIsOver { get; private set; }
+
+    public GameObject gameOverParent;
+    
+    private void OnEnable() {
+        GameIsOver = false;
+    }
+
+    public void DoGameOver() {
+        GameIsOver = true;
+        gameOverParent.SetActive(true);
+    }
 
     public void MainMenu()
     {
@@ -11,9 +21,8 @@ public class GameOver : MonoBehaviour
     }
 
 
-    public void QuitGame()
+    public void PlayAgain()
     {
-        Debug.Log("QUIT");
-        Application.Quit();
+        SceneManager.LoadScene(1);
     }
 }

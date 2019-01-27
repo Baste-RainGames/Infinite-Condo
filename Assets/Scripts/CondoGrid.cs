@@ -60,6 +60,10 @@ public class CondoGrid : MonoBehaviour {
                 text.text += blocks[x, y].canMoveUpLeft ? " UL" : " ";
                 text.text += blocks[x, y].canMoveUpRight ? " UR" : " ";
 
+                if (!blocks[x, y].hasFloor) {
+                    text.color = Color.white;
+                }
+
                 var rend = squareCopy.GetComponentInChildren<SpriteRenderer>();
                 var color = Color.Lerp(Color.white, Tweaks.GetColor(blocks[x, y].roomType), .8f);
                 color.a = .5f;
@@ -101,13 +105,33 @@ public class CondoGrid : MonoBehaviour {
         if(foundOfType.Count == 0)
             return null;
 
-        var selectedOfTyppe = foundOfType[0];
+        var maxY = int.MinValue;
+        (int, int) selectedOfType = default;
         for (int i = 1; i < foundOfType.Count; i++) {
-            if (foundOfType[i].Item2 > selectedOfTyppe.Item2)
-                selectedOfTyppe = foundOfType[i];
+            var foundX = foundOfType[i].Item1;
+            var foundY = foundOfType[i].Item2;
+            
+            if (foundY > maxY) {
+                if (blocks[foundX, foundY].hasFloor) {
+                    maxY = foundY;
+                    selectedOfType = foundOfType[i];
+                }
+            }
         }
 
-        return WalkBackFrom(selectedOfTyppe.Item1, selectedOfTyppe.Item2, fromX, fromY, prevTile);
+        if (maxY == int.MinValue) {
+            //found none with a floor (ie. only stairs), select one on stairs.
+            for (int i = 1; i < foundOfType.Count; i++) {
+                var foundY = foundOfType[i].Item2;
+            
+                if (foundY > maxY) {
+                    maxY = foundY;
+                    selectedOfType = foundOfType[i];
+                }
+            }
+        }
+
+        return WalkBackFrom(selectedOfType.Item1, selectedOfType.Item2, fromX, fromY, prevTile);
 
 
         bool CheckTile(int xPrev, int yPrev, int tileX, int tileY, Func<GridBlock, bool> checkDir,
@@ -273,9 +297,11 @@ public class CondoGrid : MonoBehaviour {
         var score = 0;
 
         var allPeople = FindObjectsOfType<Person>();
+        int peopleLeft = allPeople.Length;
         foreach (var person in allPeople) {
             if (person.posY == 0 || person.posY == 1) {
                 Destroy(person.gameObject);
+                peopleLeft--;
             }
             else {
                 person.transform.position -= new Vector3(0f, 2f, 0f);
@@ -285,6 +311,10 @@ public class CondoGrid : MonoBehaviour {
                 person.startPos -= new Vector3(0f, 2f, 0f);
                 person.targetPos -= new Vector3(0f, 2f, 0f);
             }
+        }
+
+        if (peopleLeft == 0) {
+            FindObjectOfType<GameOver>().DoGameOver();
         }
 
         for (var i = allPlacedBlocks.Count - 1; i >= 0; i--) {

@@ -6,6 +6,9 @@ public class ScoreSystem : MonoBehaviour{
     
     public static ScoreSystem instance;
 
+    // ScoreSystem.GetScore();
+    public static int GetScore() => instance.Score;
+
     public TMP_Text scoreText;
     public TMP_Text comboText;
 
