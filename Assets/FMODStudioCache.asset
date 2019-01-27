@@ -51,11 +51,12 @@ MonoBehaviour:
   - {fileID: 114496854487020422}
   - {fileID: 114735833859540468}
   - {fileID: 114984658896382650}
+  - {fileID: 114171659516848776}
   MasterBanks:
   - {fileID: 114547328497386342}
   StringsBanks:
   - {fileID: 114394558319858358}
-  stringsBankWriteTime: 636841960269801688
+  stringsBankWriteTime: 636841991694470991
   cacheVersion: 3
 --- !u!114 &114006987916832130
 MonoBehaviour:
@@ -96,6 +97,22 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2575
+--- !u!114 &114008895087460512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: ToIntro
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114019429364784626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +160,22 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1482
+--- !u!114 &114026780053248942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: ToMain
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114029678133312846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,9 +219,9 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114006987916832130}
-  - {fileID: 114974789720718694}
-  - {fileID: 114847314852857106}
+  - {fileID: 114546332208148664}
+  - {fileID: 114008895087460512}
+  - {fileID: 114026780053248942}
   MinDistance: 0
   MaxDistance: 0
   Length: 122181
@@ -413,6 +446,29 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114171659516848776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Soundeffects/Intro
+  guid: 46d22b4ad9296046b73780823fbadd1a
+  Banks:
+  - {fileID: 114547328497386342}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 6008
 --- !u!114 &114176139386004858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,7 +623,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114355871055449038}
+  - {fileID: 114242342038021178}
   MinDistance: 0
   MaxDistance: 0
   Length: 1482
@@ -659,6 +715,22 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2250
+--- !u!114 &114242342038021178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Repeat
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114283316110078926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -897,11 +969,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\FMOD\Master Bank.strings.bank
-  lastModified: 636841960269801688
+  lastModified: 636841991694470991
   LoadResult: 0
   FileSizes:
   - Name: 
-    Value: 2196
+    Value: 2232
   Exists: 1
 --- !u!114 &114394986658289220
 MonoBehaviour:
@@ -1259,6 +1331,22 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1075
+--- !u!114 &114535389582130116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Pitch
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114535464906466134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1272,6 +1360,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: ToIntro
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114546332208148664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: ToIntense
   Min: 0
   Max: 1
   Default: 0
@@ -1304,11 +1408,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: C:\Users\Kevin\Documents\GitHub\Infinite-Condo\Assets\FMOD\Master Bank.bank
-  lastModified: 636841960269771746
+  lastModified: 636841991694356192
   LoadResult: 0
   FileSizes:
   - Name: 
-    Value: 2214880
+    Value: 2284128
   Exists: 1
 --- !u!114 &114553232682975882
 MonoBehaviour:
@@ -1619,7 +1723,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114486340075105242}
+  - {fileID: 114535389582130116}
   MinDistance: 0
   MaxDistance: 0
   Length: 647
