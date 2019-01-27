@@ -49,22 +49,8 @@ public class Person : MonoBehaviour {
         if (isMoving || !hasDesire)
             return;
         if (condo.RoomTypeAt(posX, posY) == desiredRoomType) {
-            switch (desiredRoomType) {
-                case Bathroom:
-                    MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Toilet"]);
-                    break;
-                case RoomType.Bedroom:
-                    MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Bedroom"]);
-                    break;
-                case RoomType.Gym:
-                    MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Gym"]);
-                    break;
-                case RoomType.LivingRoom:
-                    MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Bookpaper"]);
-                    break;
-                default:
-                    break;
-            }
+            PlayRoomSound(desiredRoomType);
+
             StartCoroutine(SelectDesire());
         }
 
@@ -72,6 +58,26 @@ public class Person : MonoBehaviour {
 
         if (path != null) {
             StartCoroutine(MoveAlong(path));
+        }
+    }
+
+    public void PlayRoomSound(RoomType desiredRoomType) {
+        switch (desiredRoomType)
+        {
+            case RoomType.Bathroom:
+                MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Toilet"]);
+                break;
+            case RoomType.Bedroom:
+                MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Bedroom"]);
+                break;
+            case RoomType.Gym:
+                MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Gym"]);
+                break;
+            case RoomType.LivingRoom:
+                MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Bookpaper"]);
+                break;
+            default:
+                break;
         }
     }
 
@@ -112,7 +118,7 @@ public class Person : MonoBehaviour {
 
         isMoving = false;
         animator.SetBool("Move", false);
-
+        PlayRoomSound(desiredRoomType);
         StartCoroutine(SelectDesire());
     }
 

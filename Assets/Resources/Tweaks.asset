@@ -22,8 +22,8 @@ MonoBehaviour:
   moveSpeed: 2.5
   rotationSpeedMultiplier: 1.8
   GridX: 12
-  GridY: 20
-  SharkAttackYPoint: 17
+  GridY: 16
+  SharkAttackYPoint: 14
   wSlowDown: 0.5
   sSpeedUp: 10
   showVisualization: 0
@@ -61,5 +61,7 @@ MonoBehaviour:
   sharkAttackDuration: 3.5
   musicVolume: 1
   sfxVolume: 1
+  sharkAttackToMainTheme: 1
+  sharkAttackToIntenseTheme: 5
   cloudSpeed: 100
   timeBeforeEatingHappens: 2.5

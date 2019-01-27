@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -11,6 +10,7 @@ public class Intro : MonoBehaviour
 
     IEnumerator Start()
     {
+        MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Intro"]);
         IntroImage.canvasRenderer.SetAlpha(0.0f);
 
         FadeIn();
