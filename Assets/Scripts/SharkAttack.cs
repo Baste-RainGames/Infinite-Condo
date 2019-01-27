@@ -8,6 +8,7 @@ public class SharkAttack : MonoBehaviour {
     public Animator sharkAnim;
 
     private float timeReduction;
+    private int sharkAttackAmount = 0;
 
     private float _timeUntilAttack;
 
@@ -55,6 +56,16 @@ public class SharkAttack : MonoBehaviour {
         text.text = "SHARK ATTACK";
 
         sharkAnim.SetTrigger("Attack");
+        sharkAttackAmount++;
+        Debug.Log(sharkAttackAmount);
+        if (sharkAttackAmount.Equals(Tweaks.Instance.sharkAttackToMainTheme))
+        {
+            MusicSystem.PlaySongPart("ToMain");
+        }
+        else if (sharkAttackAmount.Equals(Tweaks.Instance.sharkAttackToIntenseTheme))
+        {
+            MusicSystem.PlaySongPart("ToIntense");
+        }
         MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["SharkAttack"]);
         yield return new WaitForSeconds(Tweaks.Instance.sharkAttackDuration);
 

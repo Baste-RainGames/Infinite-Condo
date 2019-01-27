@@ -91,6 +91,7 @@ public class Block : MonoBehaviour {
             transform.rotation = startRot;
             if (isMoveDown) {
                 Place();
+                MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["DropRoom"]);
             }
         }
     }

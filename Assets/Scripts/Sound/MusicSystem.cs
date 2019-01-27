@@ -8,7 +8,7 @@ public static class Songs
     public const string GameOver = "GameOver";
     public static Dictionary<string, Song> SongDictionary = new Dictionary<string, Song>()
     {
-        { MainTheme, new Song(MainTheme, "event:/Soundtracks/" + MainTheme, new List<string>(){"ToMain", "ToIntense"}) },
+        { MainTheme, new Song(MainTheme, "event:/Soundtracks/" + MainTheme, new List<string>(){"ToMain", "ToIntense", "ToIntro"}) },
         { Victory, new Song(Victory, "event:/Soundtracks/" + Victory) },
         { GameOver, new Song(GameOver, "event:/Soundtracks/" + GameOver) }
     };
@@ -61,6 +61,7 @@ public class Song
 
 	public Song(string name, string eventLocation, List<string> parameters)
 	{
+        Name = name;
 		Parameters = new List<string>();
 		EventLocation = eventLocation;
 		Parameters.AddRange(parameters);
@@ -68,7 +69,8 @@ public class Song
 
 	public Song(string name, string eventLocation)
 	{
-		Parameters = new List<string>();
+        Name = name;
+        Parameters = new List<string>();
 		EventLocation = eventLocation;
 	}
 }
@@ -81,11 +83,15 @@ public static class MusicSystem
 
 	public static void PlaySong(Song song)
 	{
-        if (currentSong.Name.Equals(song.Name))
+        if (currentSong != null)
         {
-            return;
+            if (currentSong.Name.Equals(song.Name))
+            {
+                return;
+            }
         }
         StopSong();
+        currentSong = song;
 		musicInstance = FMODUnity.RuntimeManager.CreateInstance(song.EventLocation);
 		musicInstance.setVolume(Tweaks.Instance.musicVolume);
 		musicInstance.start();
@@ -116,6 +122,7 @@ public static class MusicSystem
 
     public static void PlaySongPart(string part)
     {
+        Debug.Log("hey");
         if (currentSong.Parameters.Exists(text => text == part))
         {
             List<string> setToFalse = currentSong.Parameters.FindAll(text => text != part);
