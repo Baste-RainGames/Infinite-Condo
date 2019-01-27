@@ -52,6 +52,7 @@ public class Tweaks : ScriptableObject
     public float timeBeforeEatingHappens;
     public float moveDownSpeed;
     public AnimationCurve moveDownCurve;
+    public float chanceOfFurnitureHidden;
 
     public static Color GetColor(RoomType type) {
         switch (type) {

@@ -140,8 +140,9 @@ public class Block : MonoBehaviour {
 
             for (int i = 0; i < furniture.transform.childCount; i++) {
                 var child = furniture.transform.GetChild(i);
-                if(Random.value < .3f)
+                if(Random.value < Tweaks.Instance.chanceOfFurnitureHidden) {
                     child.gameObject.SetActive(false);
+                }
                 else {
                     if (Random.value < .5f) {
                         child.localScale = new Vector3(-child.localScale.x, child.localScale.y, child.localScale.z);
