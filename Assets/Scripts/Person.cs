@@ -49,6 +49,22 @@ public class Person : MonoBehaviour {
         if (isMoving || !hasDesire)
             return;
         if (condo.RoomTypeAt(posX, posY) == desiredRoomType) {
+            switch (desiredRoomType) {
+                case Bathroom:
+                    MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Toilet"]);
+                    break;
+                case RoomType.Bedroom:
+                    MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Bedroom"]);
+                    break;
+                case RoomType.Gym:
+                    MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Gym"]);
+                    break;
+                case RoomType.LivingRoom:
+                    MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Bookpaper"]);
+                    break;
+                default:
+                    break;
+            }
             StartCoroutine(SelectDesire());
         }
 

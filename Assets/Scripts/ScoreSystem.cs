@@ -57,10 +57,14 @@ public class ScoreSystem : MonoBehaviour{
     }
 
     public void IncreaseComboCount() {
+        MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Condo"]);
         ComboCount++;
     }
 
     public void ResetComboCount() {
+        if (ComboCount > 1) {
+            MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Condobreaker"]);
+        }
         ComboCount = 1;
     }
 }

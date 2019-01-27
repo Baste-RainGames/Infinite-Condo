@@ -11,6 +11,7 @@ public class SharkAttack : MonoBehaviour {
     private Transform sharkHead;
 
     private float timeReduction;
+    private int sharkAttackAmount = 0;
 
     private float _timeUntilAttack;
 
@@ -31,6 +32,7 @@ public class SharkAttack : MonoBehaviour {
 
     private void Update() {
         if (GameOver.GameIsOver) {
+            sharkAttackAmount = 0;
             StopAllCoroutines();
             return;
         }
@@ -63,6 +65,17 @@ public class SharkAttack : MonoBehaviour {
         text.text = "SHARK ATTACK";
 
         sharkAnim.SetTrigger("Attack");
+        sharkAttackAmount++;
+        if (sharkAttackAmount.Equals(Tweaks.Instance.sharkAttackToMainTheme))
+        {
+            MusicSystem.PlaySongPart("ToMain");
+        }
+        else if (sharkAttackAmount.Equals(Tweaks.Instance.sharkAttackToIntenseTheme))
+        {
+            MusicSystem.PlaySongPart("ToIntense");
+        }
+        MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["SharkAttack"]);
+        yield return new WaitForSeconds(Tweaks.Instance.sharkAttackDuration);
 
         var allPeopleToEat = FindObjectsOfType<Person>().Where(p => p.posY <= 1).ToList();
 
