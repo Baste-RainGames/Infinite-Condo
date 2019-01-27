@@ -48,6 +48,7 @@ public class Tweaks : ScriptableObject
     public float sfxVolume = 1.0f;
     public int sharkAttackToMainTheme = 1;
     public int sharkAttackToIntenseTheme = 5;
+    public float cloudSpeed;
 
 
     public static Color GetColor(RoomType type) {
