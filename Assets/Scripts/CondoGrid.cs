@@ -22,7 +22,8 @@ public class CondoGrid : MonoBehaviour {
             blocks[x, 0] = new GridBlock {
                 roomType = RoomType.Empty,
                 canMoveLeft = true,
-                canMoveRight = true
+                canMoveRight = true,
+                hasFloor = true
             };
         }
 
@@ -57,6 +58,10 @@ public class CondoGrid : MonoBehaviour {
                 text.text += blocks[x, y].canMoveUpLeft ? " UL" : " ";
                 text.text += blocks[x, y].canMoveUpRight ? " UR" : " ";
 
+                if (!blocks[x, y].hasFloor) {
+                    text.color = Color.white;
+                }
+
                 var rend = squareCopy.GetComponentInChildren<SpriteRenderer>();
                 var color = Color.Lerp(Color.white, Tweaks.GetColor(blocks[x, y].roomType), .8f);
                 color.a = .5f;
@@ -68,6 +73,7 @@ public class CondoGrid : MonoBehaviour {
     public List<(int, int)> FindPathTo(int fromX, int fromY, RoomType roomType) {
         var visited = new bool[blocks.GetLength(0), blocks.GetLength(1)];
         var prevTile = new (int, int)[blocks.GetLength(0), blocks.GetLength(1)];
+        var foundOfType = new List<(int, int)>();
 
         var searching = new Queue<(int, int)>();
 
@@ -78,14 +84,14 @@ public class CondoGrid : MonoBehaviour {
         while (searching.Count > 0) {
             var (x, y) = searching.Dequeue();
 
-            if (CheckTile(x, y, x - 1, y, b => b.canMoveLeft, out var findPathToLeft))
-                return findPathToLeft;
-            if (CheckTile(x, y, x + 1, y, b => b.canMoveRight, out var findPathToRight))
-                return findPathToRight;
-            if (CheckTile(x, y, x - 1, y + 1, b => b.canMoveUpLeft, out var findPathToUpLeft))
-                return findPathToUpLeft;
-            if (CheckTile(x, y, x + 1, y + 1, b => b.canMoveUpRight, out var findPathToUpRight))
-                return findPathToUpRight;
+            if (CheckTile(x, y, x - 1, y, b => b.canMoveLeft, out var matchingRoomLeft))
+                foundOfType.Add(matchingRoomLeft);
+            if (CheckTile(x, y, x + 1, y, b => b.canMoveRight, out var matchingRoomRight))
+                foundOfType.Add(matchingRoomRight);
+            if (CheckTile(x, y, x - 1, y + 1, b => b.canMoveUpLeft, out var matchingRoomUpLeft))
+                foundOfType.Add(matchingRoomUpLeft);
+            if (CheckTile(x, y, x + 1, y + 1, b => b.canMoveUpRight, out var matchingRoomUpRight))
+                foundOfType.Add(matchingRoomUpRight);
 
 
             safety--;
@@ -93,26 +99,57 @@ public class CondoGrid : MonoBehaviour {
                 throw new Exception("Safety!");
             }
         }
+        
+        if(foundOfType.Count == 0)
+            return null;
 
-        return null;
+        var maxY = int.MinValue;
+        (int, int) selectedOfType = default;
+        for (int i = 1; i < foundOfType.Count; i++) {
+            var foundX = foundOfType[i].Item1;
+            var foundY = foundOfType[i].Item2;
+            
+            if (foundY > maxY) {
+                if (blocks[foundX, foundY].hasFloor) {
+                    maxY = foundY;
+                    selectedOfType = foundOfType[i];
+                }
+            }
+        }
 
-        bool CheckTile(int x, int y, int leftX, int leftY, Func<GridBlock, bool> checkDir,
-            out List<(int, int)> findPathTo) {
-            if (!CanMove(x, y, leftX, leftY, visited, checkDir, out var left)) {
-                findPathTo = null;
+        if (maxY == int.MinValue) {
+            //found none with a floor (ie. only stairs), select one on stairs.
+            for (int i = 1; i < foundOfType.Count; i++) {
+                var foundY = foundOfType[i].Item2;
+            
+                if (foundY > maxY) {
+                    maxY = foundY;
+                    selectedOfType = foundOfType[i];
+                }
+            }
+        }
+
+        return WalkBackFrom(selectedOfType.Item1, selectedOfType.Item2, fromX, fromY, prevTile);
+
+
+        bool CheckTile(int xPrev, int yPrev, int tileX, int tileY, Func<GridBlock, bool> checkDir,
+            out (int, int) foundTarget) {
+            if (!CanMove(xPrev, yPrev, tileX, tileY, visited, checkDir, out var left)) {
+                foundTarget = default;
                 return false;
             }
 
-            prevTile[leftX, leftY] = (x, y);
-            visited[leftX, leftY] = true;
+            prevTile[tileX, tileY] = (xPrev, yPrev);
+            visited[tileX, tileY] = true;
+            
+            searching.Enqueue((tileX, tileY));
 
             if (left.roomType == roomType) {
-                findPathTo = WalkBackFrom(leftX, leftY, fromX, fromY, prevTile);
+                foundTarget = (tileX, tileY);
                 return true;
             }
 
-            searching.Enqueue((leftX, leftY));
-            findPathTo = null;
+            foundTarget = default;
             return false;
         }
     }
@@ -120,6 +157,36 @@ public class CondoGrid : MonoBehaviour {
     public void PlaceBlock(Block block) {
         allPlacedBlocks.Add(block);
         var blockData = block.blockData;
+        
+        // enable walking on top of placed pieces. Do it first to allow for stairs
+        foreach (var piece in blockData.pieces) {
+            var floatPosition = blockData.GetPosition(piece);
+
+            var (onTopX, onTopY) = (Mathf.RoundToInt(floatPosition.x), Mathf.RoundToInt(floatPosition.y + 1));
+
+            if (!IsInRange(onTopX, onTopY))
+                continue;
+            if (blocks[onTopX, onTopY].roomType != RoomType.NoRoom)
+                continue;
+            if (blockData.pieces.Any(SamePos))
+                continue;
+
+            blocks[onTopX, onTopY] = new GridBlock {
+                roomType = RoomType.Empty,
+                canMoveLeft = true,
+                canMoveRight = true,
+                hasFloor = true,
+            };
+
+            bool SamePos(BlockDataPiece otherPiece) {
+                var otherPiecePos = blockData.GetPosition(otherPiece);
+                var (otherX, otherY) = (Mathf.RoundToInt(otherPiecePos.x), Mathf.RoundToInt(otherPiecePos.y));
+
+                return onTopX == otherX && onTopY == otherY;
+            }
+        }
+        
+        //Place out actual blocks.
         foreach (var piece in blockData.pieces) {
             var floatPosition = blockData.GetPosition(piece);
             var (x, y) = (Mathf.RoundToInt(floatPosition.x), Mathf.RoundToInt(floatPosition.y));
@@ -128,9 +195,39 @@ public class CondoGrid : MonoBehaviour {
                 continue;
 
             blocks[x, y].roomType = blockData.roomType;
+            blocks[x, y].hasFloor = blockData.HasFloor(piece);
+            blocks[x, y].hasStairUL = blockData.HasStairsUpLeft(piece);
+            blocks[x, y].hasStairUR = blockData.HasStairsUpRight(piece);
 
-            blocks[x, y].canMoveUpRight = blockData.HasStairsUpRight(piece);
-            blocks[x, y].canMoveUpLeft = blockData.HasStairsUpLeft(piece);
+            if (blockData.HasStairsUpRight(piece)) {
+                var (urX, urY) = (x + 1, y + 1);
+                if (!IsInRange(urX, urY))
+                    blocks[x, y].canMoveUpRight = false;
+                else if(!blocks[urX, urY].hasFloor && !blocks[urX, urY].hasStairUR) //can either move to floor or stair
+                    blocks[x, y].canMoveUpRight = false;
+                else
+                    blocks[x, y].canMoveUpRight = true;
+                
+                //check for earlier up right stairs placed down left
+                var (dlX, dlY) = (x - 1, y - 1);
+                if (IsInRange(dlX, dlY) && blocks[dlX, dlY].hasStairUR)
+                    blocks[dlX, dlY].canMoveUpRight = true;
+            }
+            
+            if (blockData.HasStairsUpLeft(piece)) {
+                var (ulX, ulY) = (x - 1, y + 1);
+                if (!IsInRange(ulX, ulY))
+                    blocks[x, y].canMoveUpLeft = false;
+                else if(!blocks[ulX, ulY].hasFloor && !blocks[ulX, ulY].hasStairUL) //can either move to floor or stair
+                    blocks[x, y].canMoveUpLeft = false;
+                else
+                    blocks[x, y].canMoveUpLeft = true;
+                
+                //check for earlier up up left placed down right
+                var (drX, drY) = (x + 1, y - 1);
+                if (IsInRange(drX, drY) && blocks[drX, drY].hasStairUL)
+                    blocks[drX, drY].canMoveUpLeft = true;
+            }
 
             if (blockData.HasWallRight(piece)) {
                 blocks[x, y].canMoveRight = false;
@@ -150,33 +247,7 @@ public class CondoGrid : MonoBehaviour {
                 blocks[x, y].canMoveLeft = blockData.HasFloor(piece);
             }
         }
-
-        // enable walking on top of placed pieces
-        foreach (var piece in blockData.pieces) {
-            var floatPosition = blockData.GetPosition(piece);
-
-            var (onTopX, onTopY) = (Mathf.RoundToInt(floatPosition.x), Mathf.RoundToInt(floatPosition.y + 1));
-
-            if (!IsInRange(onTopX, onTopY))
-                continue;
-            if (blocks[onTopX, onTopY].roomType != RoomType.NoRoom)
-                continue;
-            if (blockData.pieces.Any(SamePos))
-                continue;
-
-            blocks[onTopX, onTopY] = new GridBlock {
-                roomType = RoomType.Empty,
-                canMoveLeft = true,
-                canMoveRight = true
-            };
-
-            bool SamePos(BlockDataPiece otherPiece) {
-                var otherPiecePos = blockData.GetPosition(otherPiece);
-                var (otherX, otherY) = (Mathf.RoundToInt(otherPiecePos.x), Mathf.RoundToInt(otherPiecePos.y));
-
-                return onTopX == otherX && onTopY == otherY;
-            }
-        }
+        
 
         BuildVisualization();
     }

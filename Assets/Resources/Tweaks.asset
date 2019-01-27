@@ -59,3 +59,5 @@ MonoBehaviour:
   timeBetweenSharkAttacksMin: 30
   timeBetweenSharkReductionEachTime: 5
   sharkAttackDuration: 3.5
+  musicVolume: 1
+  sfxVolume: 1
