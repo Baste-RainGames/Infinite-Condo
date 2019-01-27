@@ -81,8 +81,18 @@ public static class MusicSystem
 
     private static FMOD.Studio.EventInstance musicInstance;
     private static Song currentSong;
+    public static float musicVolume = 1.0f;
+    public static float sfxVolume = 1.0f;
 
-	public static void PlaySong(Song song)
+    public static void SetMusicVolume()
+    {
+        if (currentSong != null)
+        {
+            musicInstance.setVolume(musicVolume);
+        }
+    }
+
+    public static void PlaySong(Song song)
 	{
         if (currentSong != null)
         {
