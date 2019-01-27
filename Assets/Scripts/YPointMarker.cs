@@ -16,7 +16,8 @@ public class YPointMarker : MonoBehaviour {
             case Type.Floor:
                 if (boxCollider != null)
                     boxCollider.size = new Vector2(1000, 1f);
-                spriteRenderer.size = new Vector2(1000, 1f);
+                if(spriteRenderer != null)
+                    spriteRenderer.size = new Vector2(1000, 1f);
                 transform.position = new Vector3(0, -1f, 0f);
                 break;
             case Type.Ceiling:

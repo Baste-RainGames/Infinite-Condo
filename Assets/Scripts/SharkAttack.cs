@@ -10,8 +10,10 @@ public class SharkAttack : MonoBehaviour {
     [SerializeField] 
     private Transform sharkHead;
 
+    public Transform grass;
     public Transform waterLevel;
     private float waterLevelStartY;
+    private float waterLevelEndY;
 
     private float timeReduction;
     private int sharkAttackAmount = 0;
@@ -32,6 +34,7 @@ public class SharkAttack : MonoBehaviour {
         timeReduction = Tweaks.Instance.timeBetweenSharkAttacksStart;
         timeUntilAttack = timeReduction;
         waterLevelStartY = waterLevel.position.y;
+        waterLevelEndY = waterLevelStartY + 2;
     }
 
     private void Update() {
@@ -107,10 +110,16 @@ public class SharkAttack : MonoBehaviour {
         }
         
         condoGrid.SharkEatBottonRow();
+
+        if (sharkAttackAmount == 1) {
+            waterLevelStartY++;
+        }
         
         var pos = waterLevel.position;
         pos.y = waterLevelStartY;
         waterLevel.position = pos;
+        
+        grass.position -= new Vector3(0f, 2f, 0f);
         
         SHARKATTACK = false;
 
