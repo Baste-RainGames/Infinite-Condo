@@ -41,6 +41,8 @@ public class Tweaks : ScriptableObject
     public float timeBetweenSharkReductionEachTime;
     [Header("Should match anim")]
     public float sharkAttackDuration;
+    public float musicVolume = 1.0f;
+    public float sfxVolume = 1.0f;
 
 
     public static Color GetColor(RoomType type) {

@@ -40,6 +40,7 @@ public class Block : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.D)) {
             transform.position += Vector3.right;
+            MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Rotate2"]);
         }
         
         if (Input.GetKeyDown(KeyCode.K))
@@ -47,6 +48,7 @@ public class Block : MonoBehaviour
             Vector3 rotationValue = transform.eulerAngles;
             rotationValue.z -= 90;
             transform.eulerAngles = rotationValue;
+            MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Rotate2"]);
         }
 
         if (Input.GetKeyDown(KeyCode.J))
