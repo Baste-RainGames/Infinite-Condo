@@ -295,9 +295,11 @@ public class CondoGrid : MonoBehaviour {
         var score = 0;
 
         var allPeople = FindObjectsOfType<Person>();
+        int peopleLeft = allPeople.Length;
         foreach (var person in allPeople) {
             if (person.posY == 0 || person.posY == 1) {
                 Destroy(person.gameObject);
+                peopleLeft--;
             }
             else {
                 person.transform.position -= new Vector3(0f, 2f, 0f);
@@ -307,6 +309,10 @@ public class CondoGrid : MonoBehaviour {
                 person.startPos -= new Vector3(0f, 2f, 0f);
                 person.targetPos -= new Vector3(0f, 2f, 0f);
             }
+        }
+
+        if (peopleLeft == 0) {
+            FindObjectOfType<GameOver>().DoGameOver();
         }
 
         for (var i = allPlacedBlocks.Count - 1; i >= 0; i--) {

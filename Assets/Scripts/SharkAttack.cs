@@ -27,6 +27,11 @@ public class SharkAttack : MonoBehaviour {
     }
 
     private void Update() {
+        if (GameOver.GameIsOver) {
+            StopAllCoroutines();
+            return;
+        }
+
         if (SHARKATTACK)
             return;
 

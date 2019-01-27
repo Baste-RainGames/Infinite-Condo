@@ -23,7 +23,7 @@ public class BlockSpawner : MonoBehaviour
 
 
     private void Update() {
-        if (SharkAttack.SHARKATTACK)
+        if (SharkAttack.SHARKATTACK || GameOver.GameIsOver)
             return;
         
         if (spawnedBlock == null || !spawnedBlock.enabled)
