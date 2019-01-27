@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ public class SharkAttack : MonoBehaviour {
     public TMP_Text text;
     public CondoGrid condoGrid;
     public Animator sharkAnim;
+    [SerializeField] 
+    private Transform sharkHead;
 
     private float timeReduction;
     private int sharkAttackAmount = 0;
@@ -74,6 +77,22 @@ public class SharkAttack : MonoBehaviour {
         MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["SharkAttack"]);
         yield return new WaitForSeconds(Tweaks.Instance.sharkAttackDuration);
 
+        var allPeopleToEat = FindObjectsOfType<Person>().Where(p => p.posY <= 1).ToList();
+
+        var time = 0f;
+        while (time < Tweaks.Instance.sharkAttackDuration) {
+            if (Time.time > Tweaks.Instance.timeBeforeEatingHappens) {
+                for (int i = allPeopleToEat.Count - 1; i >= 0; i--) {
+                    if (allPeopleToEat[i].transform.position.x > sharkHead.position.x) {
+                        allPeopleToEat[i].Die();
+                    }
+                }
+            }            
+
+            yield return null;
+            time += Time.deltaTime;
+        }
+        
         condoGrid.SharkEatBottonRow();
         SHARKATTACK = false;
 

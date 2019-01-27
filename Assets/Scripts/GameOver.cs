@@ -25,7 +25,7 @@ public class GameOver : MonoBehaviour {
     {
         MusicSystem.PlaySong(Songs.SongDictionary[Songs.MainTheme]);
         MusicSystem.PlaySongPart("ToIntro");
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
 
@@ -33,6 +33,6 @@ public class GameOver : MonoBehaviour {
     {
         MusicSystem.PlaySong(Songs.SongDictionary[Songs.MainTheme]);
         MusicSystem.PlaySongPart("ToIntro");
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 }

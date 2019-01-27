@@ -1254,6 +1254,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListenerNumber: 0
+--- !u!4 &1003694283 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 438813546300566337, guid: 5dea106a035515d4b803fab51d010c60,
+    type: 3}
+  m_PrefabInstance: {fileID: 438813545449721140}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1052119894
 GameObject:
   m_ObjectHideFlags: 0
@@ -1689,7 +1695,7 @@ GameObject:
   - component: {fileID: 1221712569}
   - component: {fileID: 1221712568}
   m_Layer: 5
-  m_Name: Image
+  m_Name: GameOver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2747,6 +2753,7 @@ MonoBehaviour:
   text: {fileID: 1969099939}
   condoGrid: {fileID: 1659681847}
   sharkAnim: {fileID: 2669980614808448298}
+  sharkHead: {fileID: 1003694283}
 --- !u!114 &1641748729
 MonoBehaviour:
   m_ObjectHideFlags: 0

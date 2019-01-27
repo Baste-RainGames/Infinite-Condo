@@ -62,3 +62,4 @@ MonoBehaviour:
   musicVolume: 1
   sfxVolume: 1
   cloudSpeed: 100
+  timeBeforeEatingHappens: 2.5
