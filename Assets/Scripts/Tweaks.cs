@@ -34,8 +34,11 @@ public class Tweaks : ScriptableObject
     public Sprite bedroomDesireSprite;
     public Sprite livingRoomDesireSprite;
     public Sprite gymDesireSprite;
+    public Block[] startingBlocks;
     public float mediumDifficultyTime;
+    public Block[] additionalBlocksMediumDifficulty;
     public float hardDifficultyTime;
+    public Block[] additionalBlocksHardDifficulty;
     public float timeBetweenSharkAttacksStart;
     public float timeBetweenSharkAttacksMin;
     public float timeBetweenSharkReductionEachTime;

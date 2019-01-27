@@ -1,36 +1,34 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-[SelectionBase]
-public class Block : MonoBehaviour
-{
+[SelectionBase, RequireComponent(typeof(BlockData))]
+public class Block : MonoBehaviour {
     private float timeOfLastMove;
     private float timeLeft;
 
     public Collider2D myCollider;
-    public BlockData blockData;
 
     public SpriteRenderer rendererWhileFalling;
-    public SpriteRenderer rendererWhilePlaced;
-    public SpriteRenderer[] moreRenderersWhilePlaced = new SpriteRenderer[0];
+    public GameObject activeWhilePlaced;
 
     public SpriteRenderer visible0;
     public SpriteRenderer visible90;
     public SpriteRenderer visible180;
     public SpriteRenderer visible270;
 
-    private Collider2D[] results = new Collider2D[10];
+    private static readonly Collider2D[] results = new Collider2D[10];
+
+    [NonSerialized] public BlockData blockData;
 
     private void Awake() {
         blockData = GetComponent<BlockData>();
     }
 
-    private void Start()
-    {
+    private void Start() {
         timeLeft = Tweaks.Instance.secondsBetweenMovingDown;
     }
 
-    private void Update()
-    {
+    private void Update() {
         var startPos = transform.position;
         var startRot = transform.rotation;
 
@@ -42,24 +40,22 @@ public class Block : MonoBehaviour
             transform.position += Vector3.right;
             MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Rotate2"]);
         }
-        
-        if (Input.GetKeyDown(KeyCode.K))
-        {
+
+        if (Input.GetKeyDown(KeyCode.K)) {
             Vector3 rotationValue = transform.eulerAngles;
             rotationValue.z -= 90;
             transform.eulerAngles = rotationValue;
             MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Rotate2"]);
         }
 
-        if (Input.GetKeyDown(KeyCode.J))
-        {
+        if (Input.GetKeyDown(KeyCode.J)) {
             Vector3 rotationValue = transform.eulerAngles;
             rotationValue.z += 90;
             transform.eulerAngles = rotationValue;
         }
-        
+
         CheckCollision(startPos, startRot, false);
-        
+
         startPos = transform.position;
         startRot = transform.rotation;
 
@@ -107,27 +103,28 @@ public class Block : MonoBehaviour
 
         var rot = transform.eulerAngles.z;
         if (Mathf.Abs(rot) < .01f) {
-            if (visible0 != null)
-                visible0.enabled = true;
+            if (visible0 != null) {
+                TotallyEnable(visible0.gameObject);
+            }
         }
         else if (Mathf.Abs(rot - 90) < .01f) {
             if (visible90 != null)
-                visible90.enabled = true;
+                TotallyEnable(visible90.gameObject);
         }
         else if (Mathf.Abs(rot - 180) < .01f) {
             if (visible180 != null)
-                visible180.enabled = true;
+                TotallyEnable(visible180.gameObject);
         }
         else if (Mathf.Abs(rot - 270) < .01f) {
             if (visible270 != null)
-                visible270.enabled = true;
+                TotallyEnable(visible270.gameObject);
         }
 
-        if (rendererWhilePlaced != null) {
+        if (activeWhilePlaced != null) {
             if (rendererWhileFalling != null)
                 rendererWhileFalling.enabled = false;
-            rendererWhilePlaced.gameObject.SetActive(true);
-            rendererWhilePlaced.enabled = true;
+
+            TotallyEnable(activeWhilePlaced);
         }
 
         if (AnyPartHitsSharkAttackPoint()) {
@@ -135,6 +132,15 @@ public class Block : MonoBehaviour
         }
 
         enabled = false;
+
+        void TotallyEnable(GameObject whilePlaced) {
+            foreach (var obj in whilePlaced.GetComponentsInChildren<Transform>(true)) {
+                obj.gameObject.SetActive(true);
+                var sr = obj.GetComponent<SpriteRenderer>();
+                if (sr != null)
+                    sr.enabled = true;
+            }
+        }
     }
 
     private bool AnyPartHitsSharkAttackPoint() {

@@ -35,8 +35,26 @@ MonoBehaviour:
   livingRoomDesireSprite: {fileID: 21300000, guid: 5ad95c95444cb324c88b4c164ce4d13c,
     type: 3}
   gymDesireSprite: {fileID: 21300000, guid: 5b78a46b1efd2e844b8cbf26d0cb5715, type: 3}
+  startingBlocks:
+  - {fileID: 6783780390555371396, guid: 20a3d5168b7bc31418ff95144a9791a4, type: 3}
+  - {fileID: 6783780390555371396, guid: d79185bba2aa2b544b204574419e3f30, type: 3}
+  - {fileID: 6783780390555371396, guid: b38689700211e2b46acc8a7f52f141fd, type: 3}
+  - {fileID: 6783780390555371396, guid: 0856f85da38e5c14db5e582850cb1cd8, type: 3}
+  - {fileID: 6783780390555371396, guid: 607d43d512af5e74fbaa260aa4104bef, type: 3}
+  - {fileID: 6783780390555371396, guid: ad8caea00cbc7684cb6da8534b87d794, type: 3}
+  - {fileID: 6783780390555371396, guid: fa0c65b159ebabc4ebd95f7c2b7fdd6a, type: 3}
+  - {fileID: 6783780390555371396, guid: 20a3d5168b7bc31418ff95144a9791a4, type: 3}
+  - {fileID: 6783780390555371396, guid: d79185bba2aa2b544b204574419e3f30, type: 3}
+  - {fileID: 6783780390555371396, guid: b38689700211e2b46acc8a7f52f141fd, type: 3}
+  - {fileID: 6783780390555371396, guid: 0856f85da38e5c14db5e582850cb1cd8, type: 3}
+  - {fileID: 6783780390555371396, guid: 20a3d5168b7bc31418ff95144a9791a4, type: 3}
+  - {fileID: 6783780390555371396, guid: d79185bba2aa2b544b204574419e3f30, type: 3}
+  - {fileID: 6783780390555371396, guid: b38689700211e2b46acc8a7f52f141fd, type: 3}
+  - {fileID: 6783780390555371396, guid: 0856f85da38e5c14db5e582850cb1cd8, type: 3}
   mediumDifficultyTime: 60
+  additionalBlocksMediumDifficulty: []
   hardDifficultyTime: 120
+  additionalBlocksHardDifficulty: []
   timeBetweenSharkAttacksStart: 60
   timeBetweenSharkAttacksMin: 30
   timeBetweenSharkReductionEachTime: 5
