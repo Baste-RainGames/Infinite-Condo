@@ -50,6 +50,7 @@ public static class SoundEffects
         { "Toilet", "event:/Soundeffects/Toilet" },
         { "WomanActivate", "event:/Soundeffects/WomanActivate" },
         { "WomanSad", "event:/Soundeffects/WomanSad" },
+        { "Intro", "event:/Soundeffects/Intro" }
     };
 }
 

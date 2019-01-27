@@ -11,6 +11,7 @@ public class Intro : MonoBehaviour
 
     IEnumerator Start()
     {
+        MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Intro"]);
         IntroImage.canvasRenderer.SetAlpha(0.0f);
 
         FadeIn();

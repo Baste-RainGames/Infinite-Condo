@@ -53,6 +53,9 @@ public class ScoreSystem : MonoBehaviour{
     }
 
     public static void IncreaseScore(int score) {
+        if (score != 0) {
+            MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Coins2"]);
+        }
         instance.Score += score;
     }
 
