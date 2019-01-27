@@ -104,7 +104,7 @@ public static class MusicSystem
         StopSong();
         currentSong = song;
 		musicInstance = FMODUnity.RuntimeManager.CreateInstance(song.EventLocation);
-		musicInstance.setVolume(Tweaks.Instance.musicVolume);
+		musicInstance.setVolume(musicVolume);
 		musicInstance.start();
 	}
 
@@ -127,7 +127,7 @@ public static class MusicSystem
 	public static void PlaySoundEffect(string path)
 	{
 		var soundEffect = FMODUnity.RuntimeManager.CreateInstance(path);
-		soundEffect.setVolume(Tweaks.Instance.sfxVolume);
+		soundEffect.setVolume(sfxVolume);
 		soundEffect.start();
 	}
 
