@@ -58,6 +58,10 @@ public class CondoGrid : MonoBehaviour {
                 text.text += blocks[x, y].canMoveUpLeft ? " UL" : " ";
                 text.text += blocks[x, y].canMoveUpRight ? " UR" : " ";
 
+                if (!blocks[x, y].hasFloor) {
+                    text.color = Color.white;
+                }
+
                 var rend = squareCopy.GetComponentInChildren<SpriteRenderer>();
                 var color = Color.Lerp(Color.white, Tweaks.GetColor(blocks[x, y].roomType), .8f);
                 color.a = .5f;
@@ -99,13 +103,33 @@ public class CondoGrid : MonoBehaviour {
         if(foundOfType.Count == 0)
             return null;
 
-        var selectedOfTyppe = foundOfType[0];
+        var maxY = int.MinValue;
+        (int, int) selectedOfType = default;
         for (int i = 1; i < foundOfType.Count; i++) {
-            if (foundOfType[i].Item2 > selectedOfTyppe.Item2)
-                selectedOfTyppe = foundOfType[i];
+            var foundX = foundOfType[i].Item1;
+            var foundY = foundOfType[i].Item2;
+            
+            if (foundY > maxY) {
+                if (blocks[foundX, foundY].hasFloor) {
+                    maxY = foundY;
+                    selectedOfType = foundOfType[i];
+                }
+            }
         }
 
-        return WalkBackFrom(selectedOfTyppe.Item1, selectedOfTyppe.Item2, fromX, fromY, prevTile);
+        if (maxY == int.MinValue) {
+            //found none with a floor (ie. only stairs), select one on stairs.
+            for (int i = 1; i < foundOfType.Count; i++) {
+                var foundY = foundOfType[i].Item2;
+            
+                if (foundY > maxY) {
+                    maxY = foundY;
+                    selectedOfType = foundOfType[i];
+                }
+            }
+        }
+
+        return WalkBackFrom(selectedOfType.Item1, selectedOfType.Item2, fromX, fromY, prevTile);
 
 
         bool CheckTile(int xPrev, int yPrev, int tileX, int tileY, Func<GridBlock, bool> checkDir,
