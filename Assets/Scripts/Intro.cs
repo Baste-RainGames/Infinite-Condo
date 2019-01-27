@@ -11,7 +11,6 @@ public class Intro : MonoBehaviour
 
     IEnumerator Start()
     {
-        RuntimeManager.LoadBank("Master Bank");
         MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Intro"]);
         IntroImage.canvasRenderer.SetAlpha(0.0f);
 
