@@ -10,6 +10,9 @@ public class SharkAttack : MonoBehaviour {
     [SerializeField] 
     private Transform sharkHead;
 
+    public Transform waterLevel;
+    private float waterLevelStartY;
+
     private float timeReduction;
     private int sharkAttackAmount = 0;
 
@@ -28,6 +31,7 @@ public class SharkAttack : MonoBehaviour {
     private void Start() {
         timeReduction = Tweaks.Instance.timeBetweenSharkAttacksStart;
         timeUntilAttack = timeReduction;
+        waterLevelStartY = waterLevel.position.y;
     }
 
     private void Update() {
@@ -46,6 +50,12 @@ public class SharkAttack : MonoBehaviour {
         }
 
         timeUntilAttack -= Time.deltaTime;
+
+        var yPos_t = Mathf.InverseLerp(timeReduction, 0f, timeUntilAttack);
+        var yPos = Mathf.Lerp(waterLevelStartY, waterLevelStartY + 2, yPos_t);
+        var pos = waterLevel.position;
+        pos.y = yPos;
+        waterLevel.position = pos;
 
         if (timeUntilAttack < 0f) {
             StartCoroutine(SharkAttackRoutine(false));
@@ -75,16 +85,19 @@ public class SharkAttack : MonoBehaviour {
             MusicSystem.PlaySongPart("ToIntense");
         }
         MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["SharkAttack"]);
-        yield return new WaitForSeconds(Tweaks.Instance.sharkAttackDuration);
 
         var allPeopleToEat = FindObjectsOfType<Person>().Where(p => p.posY <= 1).ToList();
 
         var time = 0f;
         while (time < Tweaks.Instance.sharkAttackDuration) {
-            if (Time.time > Tweaks.Instance.timeBeforeEatingHappens) {
+            if (time > Tweaks.Instance.timeBeforeEatingHappens) {
                 for (int i = allPeopleToEat.Count - 1; i >= 0; i--) {
-                    if (allPeopleToEat[i].transform.position.x > sharkHead.position.x) {
+                    var positionX = allPeopleToEat[i].transform.position.x;
+                    var sharkX = sharkHead.position.x;
+
+                    if (positionX > sharkX) {
                         allPeopleToEat[i].Die();
+                        allPeopleToEat.RemoveAt(i);
                     }
                 }
             }            
@@ -94,6 +107,11 @@ public class SharkAttack : MonoBehaviour {
         }
         
         condoGrid.SharkEatBottonRow();
+        
+        var pos = waterLevel.position;
+        pos.y = waterLevelStartY;
+        waterLevel.position = pos;
+        
         SHARKATTACK = false;
 
         timeReduction -= Tweaks.Instance.timeBetweenSharkReductionEachTime;
