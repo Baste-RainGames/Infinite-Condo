@@ -47,6 +47,7 @@ public class Tweaks : ScriptableObject
     public float musicVolume = 1.0f;
     public float sfxVolume = 1.0f;
     public float cloudSpeed;
+    public float timeBeforeEatingHappens;
 
 
     public static Color GetColor(RoomType type) {

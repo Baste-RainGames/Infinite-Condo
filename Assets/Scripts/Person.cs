@@ -14,7 +14,7 @@ public class Person : MonoBehaviour {
     private CondoGrid condo;
     public int posX;
     public int posY;
-    private Animator animator;
+    public Animator animator;
 
     public Material head_idle, head_move, head_happy, head_dead;
     public Material body_idle, body_move, body_happy, body_dead;
@@ -103,7 +103,7 @@ public class Person : MonoBehaviour {
     private IEnumerator SelectDesire() {
         hasDesire = false;
         head.sharedMaterial = head_happy;
-        head.sharedMaterial = head_happy;
+        body.sharedMaterial = body_happy;
         yield return new WaitForSeconds(Tweaks.Instance.timeBetweenSwitchDesiredRoom);
 
         var lastDesired = desiredRoomType;
@@ -144,5 +144,11 @@ public class Person : MonoBehaviour {
             default:
                 throw new ArgumentOutOfRangeException();
         }
+    }
+
+    public void Die() {
+        animator.Play("Die");
+        head.sharedMaterial = head_dead;
+        body.sharedMaterial = body_dead;
     }
 }
