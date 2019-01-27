@@ -11,9 +11,8 @@ public class GameOver : MonoBehaviour
     }
 
 
-    public void QuitGame()
+    public void PlayAgain()
     {
-        Debug.Log("QUIT");
-        Application.Quit();
+        SceneManager.LoadScene(1);
     }
 }
