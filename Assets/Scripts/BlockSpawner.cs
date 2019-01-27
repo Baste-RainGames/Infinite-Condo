@@ -3,13 +3,6 @@ using UnityEngine;
 
 public class BlockSpawner : MonoBehaviour
 {
-
-    public Block[] possibleBlocks;
-
-    public Block[] additionalBlocksMed;
-
-    public Block[] additionalBlocksHard;
-
     public Transform previewspawn;
 
     private Block previewblock;
@@ -31,12 +24,12 @@ public class BlockSpawner : MonoBehaviour
         
         List<Block> blocksToUse = new List<Block>();
 
-        blocksToUse.AddRange(possibleBlocks);
+        blocksToUse.AddRange(Tweaks.Instance.startingBlocks);
 
         if (Time.time > Tweaks.Instance.mediumDifficultyTime)
-            blocksToUse.AddRange(additionalBlocksMed);
+            blocksToUse.AddRange(Tweaks.Instance.additionalBlocksMediumDifficulty);
         if (Time.time > Tweaks.Instance.hardDifficultyTime)
-            blocksToUse.AddRange(additionalBlocksHard);
+            blocksToUse.AddRange(Tweaks.Instance.additionalBlocksHardDifficulty);
         
         if (newpreview)
         {
