@@ -17,8 +17,11 @@ public class BlockData : MonoBehaviour {
             Gizmos.color = Color.red;
             Gizmos.DrawSphere(position, .1f);
 
-            if (HasFloor(piece)) {
+            if (CanMoveRight(piece)) {
                 Gizmos.DrawLine(position, position + new Vector3(0.4f, 0f, 0f));
+            }
+
+            if (CanMoveLeft(piece)) {
                 Gizmos.DrawLine(position, position + new Vector3(-0.4f, 0f, 0f));
             }
 
@@ -77,7 +80,7 @@ public class BlockData : MonoBehaviour {
 
         return transform.TransformPoint(offset);
     }
-
+    
     public bool HasFloor(BlockDataPiece piece) {
         var piecePos = GetPosition(piece);
         
@@ -88,5 +91,53 @@ public class BlockData : MonoBehaviour {
         }
 
         return true;
+    }
+
+    public bool HasWallRight(BlockDataPiece piece) {
+        if (Math.Abs(transform.eulerAngles.z) < .01f)
+            return piece.wallRight;
+
+        if (Math.Abs(transform.eulerAngles.z - 90f) < .01f)
+            return piece.wallDown;
+
+        if (Math.Abs(transform.eulerAngles.z - 180f) < .01f)
+            return piece.wallLeft;
+
+        if (Math.Abs(transform.eulerAngles.z - 270f) < .01f)
+            return piece.wallUp;
+
+        return false;
+    }
+    
+    public bool HasWallLeft(BlockDataPiece piece) {
+        if (Math.Abs(transform.eulerAngles.z) < .01f)
+            return piece.wallLeft;
+
+        if (Math.Abs(transform.eulerAngles.z - 90f) < .01f)
+            return piece.wallUp;
+
+        if (Math.Abs(transform.eulerAngles.z - 180f) < .01f)
+            return piece.wallRight;
+
+        if (Math.Abs(transform.eulerAngles.z - 270f) < .01f)
+            return piece.wallDown;
+
+        return false;
+    }
+
+    
+    private bool CanMoveRight(BlockDataPiece piece) {
+        if (!HasFloor(piece))
+            return false;
+
+        return !HasWallRight(piece);
+    }
+    
+    
+    private bool CanMoveLeft(BlockDataPiece piece) {
+        if (!HasFloor(piece))
+            return false;
+
+        return !HasWallLeft(piece);
     }
 }

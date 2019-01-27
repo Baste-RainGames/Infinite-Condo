@@ -4,8 +4,9 @@ using System;
 public struct BlockDataPiece {
     public int xOffset;
     public int yOffset;
-
+    
     public bool stairR0, stairR90;
+    public bool wallLeft, wallRight, wallUp, wallDown;
 
     public bool stairR180 => stairR0;
     public bool stairR270 => stairR90;
