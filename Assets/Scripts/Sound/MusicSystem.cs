@@ -122,7 +122,6 @@ public static class MusicSystem
 
     public static void PlaySongPart(string part)
     {
-        Debug.Log("hey");
         if (currentSong.Parameters.Exists(text => text == part))
         {
             List<string> setToFalse = currentSong.Parameters.FindAll(text => text != part);
