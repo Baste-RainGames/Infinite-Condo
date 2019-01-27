@@ -75,16 +75,19 @@ public class SharkAttack : MonoBehaviour {
             MusicSystem.PlaySongPart("ToIntense");
         }
         MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["SharkAttack"]);
-        yield return new WaitForSeconds(Tweaks.Instance.sharkAttackDuration);
 
         var allPeopleToEat = FindObjectsOfType<Person>().Where(p => p.posY <= 1).ToList();
 
         var time = 0f;
         while (time < Tweaks.Instance.sharkAttackDuration) {
-            if (Time.time > Tweaks.Instance.timeBeforeEatingHappens) {
+            if (time > Tweaks.Instance.timeBeforeEatingHappens) {
                 for (int i = allPeopleToEat.Count - 1; i >= 0; i--) {
-                    if (allPeopleToEat[i].transform.position.x > sharkHead.position.x) {
+                    var positionX = allPeopleToEat[i].transform.position.x;
+                    var sharkX = sharkHead.position.x;
+
+                    if (positionX > sharkX) {
                         allPeopleToEat[i].Die();
+                        allPeopleToEat.RemoveAt(i);
                     }
                 }
             }            
