@@ -29,6 +29,9 @@ public class Block : MonoBehaviour {
     }
 
     private void Update() {
+        if (GameOver.GameIsOver)
+            return;
+        
         var startPos = transform.position;
         var startRot = transform.rotation;
 
