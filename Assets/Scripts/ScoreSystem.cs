@@ -12,6 +12,9 @@ public class ScoreSystem : MonoBehaviour{
     public TMP_Text scoreText;
     public TMP_Text comboText;
 
+    public TMP_Text finalscoreText;
+    
+
     private int _comboCount = 1;
     private int ComboCount {
         get => _comboCount;
@@ -35,6 +38,7 @@ public class ScoreSystem : MonoBehaviour{
         get => _score;
         set {
             scoreText.text = "Score: " + value;
+            finalscoreText.text = "" + value;
             _score = value;
         }
     }

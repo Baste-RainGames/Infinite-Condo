@@ -4,8 +4,12 @@ public class GameOver : MonoBehaviour {
     
     public static bool GameIsOver { get; private set; }
 
+    public static bool InGame { get; private set; }
+
     public GameObject gameOverParent;
-    
+
+    public GameObject InGameParent;
+
     private void OnEnable() {
         GameIsOver = false;
     }
@@ -13,6 +17,7 @@ public class GameOver : MonoBehaviour {
     public void DoGameOver() {
         GameIsOver = true;
         gameOverParent.SetActive(true);
+        InGameParent.SetActive(false);
     }
 
     public void MainMenu()
