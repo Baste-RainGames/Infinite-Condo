@@ -45,6 +45,7 @@ public static class SoundEffects
         { "Points", "event:/Soundeffects/Points" },
         { "Rotate", "event:/Soundeffects/Rotate" },
         { "Rotate2", "event:/Soundeffects/Rotate2" },
+        { "SharkAttack", "event:/Soundeffects/SharkAttack" },
         { "Stairs", "event:/Soundeffects/Stairs" },
         { "Toilet", "event:/Soundeffects/Toilet" },
         { "WomanActivate", "event:/Soundeffects/WomanActivate" },

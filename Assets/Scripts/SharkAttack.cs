@@ -55,6 +55,7 @@ public class SharkAttack : MonoBehaviour {
         text.text = "SHARK ATTACK";
 
         sharkAnim.SetTrigger("Attack");
+        MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["SharkAttack"]);
         yield return new WaitForSeconds(Tweaks.Instance.sharkAttackDuration);
 
         condoGrid.SharkEatBottonRow();
