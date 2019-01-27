@@ -50,7 +50,8 @@ public class Tweaks : ScriptableObject
     public int sharkAttackToIntenseTheme = 5;
     public float cloudSpeed;
     public float timeBeforeEatingHappens;
-
+    public float moveDownSpeed;
+    public AnimationCurve moveDownCurve;
 
     public static Color GetColor(RoomType type) {
         switch (type) {

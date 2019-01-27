@@ -109,17 +109,16 @@ public class SharkAttack : MonoBehaviour {
             time += Time.deltaTime;
         }
         
-        condoGrid.SharkEatBottonRow();
+        yield return condoGrid.SharkEatBottonRow();
 
         if (sharkAttackAmount == 1) {
-            waterLevelStartY++;
+            waterLevelStartY += .5f;
         }
         
         var pos = waterLevel.position;
         pos.y = waterLevelStartY;
         waterLevel.position = pos;
         
-        grass.position -= new Vector3(0f, 2f, 0f);
         
         SHARKATTACK = false;
 

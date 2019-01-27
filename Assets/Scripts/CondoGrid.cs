@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -293,8 +294,11 @@ public class CondoGrid : MonoBehaviour {
         return blocks[posX, posY].roomType;
     }
 
-    public void SharkEatBottonRow() {
+    public IEnumerator SharkEatBottonRow() {
         var score = 0;
+        
+        var toMoveDown = new List<Transform>();
+        
 
         var allPeople = FindObjectsOfType<Person>();
         int peopleLeft = allPeople.Length;
@@ -304,7 +308,7 @@ public class CondoGrid : MonoBehaviour {
                 peopleLeft--;
             }
             else {
-                person.transform.position -= new Vector3(0f, 2f, 0f);
+                toMoveDown.Add(person.transform);
                 person.posY -= 2;
 
                 //start pos of current downmovement
@@ -313,18 +317,35 @@ public class CondoGrid : MonoBehaviour {
             }
         }
 
-        if (peopleLeft == 0) {
-            FindObjectOfType<GameOver>().DoGameOver();
+        foreach (var placedBlock in allPlacedBlocks) {
+            toMoveDown.Add(placedBlock.transform);
         }
+
+        var startPos = new Vector3[toMoveDown.Count];
+        var endPos = new Vector3[toMoveDown.Count];
+
+        for (var i = 0; i < toMoveDown.Count; i++) {
+            var trans = toMoveDown[i];
+            startPos[i] = trans.position;
+            endPos[i] = trans.position - new Vector3(0f, 2f, 0f);
+        }
+
+        var time = 0f;
+        while (time < 1f) {
+            time += Time.deltaTime * Tweaks.Instance.moveDownSpeed;
+            var pos_t = Tweaks.Instance.moveDownCurve.Evaluate(time);
+            
+            for (var i = 0; i < toMoveDown.Count; i++) {
+                toMoveDown[i].position = Vector3.LerpUnclamped(startPos[i], endPos[i], pos_t);
+            }
+
+            yield return null;
+        }
+        
 
         for (var i = allPlacedBlocks.Count - 1; i >= 0; i--) {
             var placedBlock = allPlacedBlocks[i];
-            if (placedBlock == null) {
-                Debug.Log("eeek!");
-            }
-
-            placedBlock.transform.position -= new Vector3(0f, 2f, 0f);
-
+            
             if (placedBlock.CompletelyUnderWorld()) {
                 score += ScoreSystem.instance.GetScoreFor(placedBlock);
 
@@ -335,6 +356,11 @@ public class CondoGrid : MonoBehaviour {
 
         MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Explosion"]);
         ScoreSystem.IncreaseScore(score);
+        
+
+        if (peopleLeft == 0) {
+            FindObjectOfType<GameOver>().DoGameOver();
+        }
 
         for (int y = 0; y < blocks.GetLength(1) - 2; y++)
         for (int x = 0; x < blocks.GetLength(0); x++) {
