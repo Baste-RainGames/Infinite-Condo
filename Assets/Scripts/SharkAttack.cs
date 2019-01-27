@@ -29,6 +29,7 @@ public class SharkAttack : MonoBehaviour {
 
     private void Update() {
         if (GameOver.GameIsOver) {
+            sharkAttackAmount = 0;
             StopAllCoroutines();
             return;
         }
@@ -62,7 +63,6 @@ public class SharkAttack : MonoBehaviour {
 
         sharkAnim.SetTrigger("Attack");
         sharkAttackAmount++;
-        Debug.Log(sharkAttackAmount);
         if (sharkAttackAmount.Equals(Tweaks.Instance.sharkAttackToMainTheme))
         {
             MusicSystem.PlaySongPart("ToMain");
