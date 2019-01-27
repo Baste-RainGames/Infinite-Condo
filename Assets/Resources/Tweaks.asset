@@ -26,7 +26,7 @@ MonoBehaviour:
   SharkAttackYPoint: 17
   wSlowDown: 0.5
   sSpeedUp: 10
-  showVisualization: 0
+  showVisualization: 1
   timeBetweenSwitchDesiredRoom: 2
   bathroomDesireSprite: {fileID: 21300000, guid: 1ef5eacf1a495464791bbdbd3d0df7a5,
     type: 3}
@@ -40,13 +40,9 @@ MonoBehaviour:
   - {fileID: 6783780390555371396, guid: d79185bba2aa2b544b204574419e3f30, type: 3}
   - {fileID: 6783780390555371396, guid: b38689700211e2b46acc8a7f52f141fd, type: 3}
   - {fileID: 6783780390555371396, guid: 0856f85da38e5c14db5e582850cb1cd8, type: 3}
+  - {fileID: 6783780390555371396, guid: 607d43d512af5e74fbaa260aa4104bef, type: 3}
   - {fileID: 6783780390555371396, guid: ad8caea00cbc7684cb6da8534b87d794, type: 3}
   - {fileID: 6783780390555371396, guid: fa0c65b159ebabc4ebd95f7c2b7fdd6a, type: 3}
-  - {fileID: 6783780390555371396, guid: 607d43d512af5e74fbaa260aa4104bef, type: 3}
-  - {fileID: 6783780390555371396, guid: 20a3d5168b7bc31418ff95144a9791a4, type: 3}
-  - {fileID: 6783780390555371396, guid: d79185bba2aa2b544b204574419e3f30, type: 3}
-  - {fileID: 6783780390555371396, guid: b38689700211e2b46acc8a7f52f141fd, type: 3}
-  - {fileID: 6783780390555371396, guid: 0856f85da38e5c14db5e582850cb1cd8, type: 3}
   - {fileID: 6783780390555371396, guid: 20a3d5168b7bc31418ff95144a9791a4, type: 3}
   - {fileID: 6783780390555371396, guid: d79185bba2aa2b544b204574419e3f30, type: 3}
   - {fileID: 6783780390555371396, guid: b38689700211e2b46acc8a7f52f141fd, type: 3}

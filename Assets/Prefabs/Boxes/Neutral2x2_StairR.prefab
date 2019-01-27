@@ -369,8 +369,7 @@ MonoBehaviour:
   myCollider: {fileID: 6783780391563744224}
   blockData: {fileID: 0}
   rendererWhileFalling: {fileID: 6783780391563744227}
-  rendererWhilePlaced: {fileID: 8943681554970060836}
-  moreRenderersWhilePlaced: []
+  activeWhilePlaced: {fileID: 49161139012598633}
   visible0: {fileID: 417925336447259241}
   visible90: {fileID: 8564088303398603894}
   visible180: {fileID: 5091180170391323226}
@@ -405,6 +404,10 @@ MonoBehaviour:
     yOffset: 1
     stairR0: 1
     stairR90: 0
+  wallLeft: 0
+  wallRight: 0
+  wallUp: 0
+  wallDown: 0
 --- !u!1 &6783780391563744229
 GameObject:
   m_ObjectHideFlags: 0

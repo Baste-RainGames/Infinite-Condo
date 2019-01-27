@@ -45,13 +45,6 @@ public class CondoGrid : MonoBehaviour {
         if (Tweaks.Instance.showVisualization) {
             for (int x = 0; x < blocks.GetLength(0); x++)
             for (int y = 0; y < blocks.GetLength(1); y++) {
-                var blockInfo = blocks[x, y];
-
-                /*
-                if (blockInfo.roomType == RoomType.NoRoom)
-                    continue;
-                */
-
                 var squareCopy = Instantiate(square);
                 representation[x, y] = squareCopy;
                 squareCopy.transform.position = new Vector3(x, y, -1);
@@ -136,17 +129,25 @@ public class CondoGrid : MonoBehaviour {
 
             blocks[x, y].roomType = blockData.roomType;
 
-            if (blockData.HasFloor(piece)) {
-                blocks[x, y].canMoveRight = true;
-                blocks[x, y].canMoveLeft = true;
-            }
+            blocks[x, y].canMoveUpRight = blockData.HasStairsUpRight(piece);
+            blocks[x, y].canMoveUpLeft = blockData.HasStairsUpLeft(piece);
 
-            if (blockData.HasStairsUpRight(piece)) {
-                blocks[x, y].canMoveUpRight = true;
+            if (blockData.HasWallRight(piece)) {
+                blocks[x, y].canMoveRight = false;
+                if (IsInRange(x + 1, y))
+                    blocks[x + 1, y].canMoveLeft = false;
             }
-
-            if (blockData.HasStairsUpLeft(piece)) {
-                blocks[x, y].canMoveUpLeft = true;
+            else {
+                blocks[x, y].canMoveRight = blockData.HasFloor(piece);
+            }
+            
+            if (blockData.HasWallLeft(piece)) {
+                blocks[x, y].canMoveLeft = false;
+                if (IsInRange(x - 1, y))
+                    blocks[x - 1, y].canMoveRight = false;
+            }
+            else {
+                blocks[x, y].canMoveLeft = blockData.HasFloor(piece);
             }
         }
 
@@ -221,7 +222,7 @@ public class CondoGrid : MonoBehaviour {
 
     public void SharkEatBottonRow() {
         var score = 0;
-        
+
         var allPeople = FindObjectsOfType<Person>();
         foreach (var person in allPeople) {
             if (person.posY == 0 || person.posY == 1) {
@@ -242,6 +243,7 @@ public class CondoGrid : MonoBehaviour {
             if (placedBlock == null) {
                 Debug.Log("eeek!");
             }
+
             placedBlock.transform.position -= new Vector3(0f, 2f, 0f);
 
             if (placedBlock.CompletelyUnderWorld()) {
@@ -263,7 +265,7 @@ public class CondoGrid : MonoBehaviour {
         for (int x = 0; x < blocks.GetLength(0); x++) {
             blocks[x, y] = new GridBlock();
         }
-        
+
         BuildVisualization();
     }
 }
