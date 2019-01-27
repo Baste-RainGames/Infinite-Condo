@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [SelectionBase, RequireComponent(typeof(BlockData))]
 public class Block : MonoBehaviour {
@@ -10,6 +11,7 @@ public class Block : MonoBehaviour {
 
     public SpriteRenderer rendererWhileFalling;
     public GameObject activeWhilePlaced;
+    public GameObject furniture;
 
     public SpriteRenderer visible0;
     public SpriteRenderer visible90;
@@ -128,6 +130,23 @@ public class Block : MonoBehaviour {
                 rendererWhileFalling.enabled = false;
 
             TotallyEnable(activeWhilePlaced);
+        }
+
+        if (furniture != null) {
+            furniture.SetActive(true);
+            
+            furniture.transform.rotation = Quaternion.identity;
+
+            for (int i = 0; i < furniture.transform.childCount; i++) {
+                var child = furniture.transform.GetChild(i);
+                if(Random.value < .3f)
+                    child.gameObject.SetActive(false);
+                else {
+                    if (Random.value < .5f) {
+                        child.localScale = new Vector3(-child.localScale.x, child.localScale.y, child.localScale.z);
+                    }
+                }
+            }
         }
 
         if (AnyPartHitsSharkAttackPoint()) {
