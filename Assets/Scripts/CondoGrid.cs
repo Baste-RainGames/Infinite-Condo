@@ -31,6 +31,8 @@ public class CondoGrid : MonoBehaviour {
     }
 
     private void Start() {
+        MusicSystem.PlaySong(Songs.SongDictionary[Songs.MainTheme]);
+        MusicSystem.PlaySongPart("ToIntro");
         var startingBlocks = FindObjectsOfType<Block>();
         foreach (var block in startingBlocks) {
             block.Place();
@@ -331,6 +333,7 @@ public class CondoGrid : MonoBehaviour {
             }
         }
 
+        MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Explosion"]);
         ScoreSystem.IncreaseScore(score);
 
         for (int y = 0; y < blocks.GetLength(1) - 2; y++)

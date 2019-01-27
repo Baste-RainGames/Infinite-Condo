@@ -46,6 +46,10 @@ public class Tweaks : ScriptableObject
     public float sharkAttackDuration;
     public float musicVolume = 1.0f;
     public float sfxVolume = 1.0f;
+    public int sharkAttackToMainTheme = 1;
+    public int sharkAttackToIntenseTheme = 5;
+    public float cloudSpeed;
+    public float timeBeforeEatingHappens;
 
 
     public static Color GetColor(RoomType type) {

@@ -6,19 +6,25 @@ public class ScoreSystem : MonoBehaviour{
     
     public static ScoreSystem instance;
 
+    // ScoreSystem.GetScore();
+    public static int GetScore() => instance.Score;
+
     public TMP_Text scoreText;
     public TMP_Text comboText;
+
+    public TMP_Text finalscoreText;
+    
 
     private int _comboCount = 1;
     private int ComboCount {
         get => _comboCount;
         set {
             _comboCount = value;
-            if (value == 1)
+            if (value == 2)
                 comboText.text = "";
             
             var str = "C";
-            for (int i = 1; i < value; i++) {
+            for (int i = 2; i < value; i++) {
                 str += "-C";
             }
 
@@ -32,6 +38,7 @@ public class ScoreSystem : MonoBehaviour{
         get => _score;
         set {
             scoreText.text = "Score: " + value;
+            finalscoreText.text = "" + value;
             _score = value;
         }
     }
@@ -50,10 +57,14 @@ public class ScoreSystem : MonoBehaviour{
     }
 
     public void IncreaseComboCount() {
+        MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Condo"]);
         ComboCount++;
     }
 
     public void ResetComboCount() {
+        if (ComboCount > 1) {
+            MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Condobreaker"]);
+        }
         ComboCount = 1;
     }
 }
