@@ -1141,7 +1141,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 55.5, y: 93.85}
+  m_AnchoredPosition: {x: 55.5, y: 95.189995}
   m_SizeDelta: {x: 347.27, y: 104.66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &846087233
@@ -2734,8 +2734,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -92.4, y: 71.999985}
-  m_SizeDelta: {x: 228.1, y: 228.1}
+  m_AnchoredPosition: {x: -91.4, y: 63.9}
+  m_SizeDelta: {x: 244.69, y: 244.69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1211084311
 MonoBehaviour:
@@ -3897,7 +3897,18 @@ MonoBehaviour:
   m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1727111808
@@ -4083,7 +4094,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -39.2, y: 95.19}
-  m_SizeDelta: {x: 380.09, y: 114.56}
+  m_SizeDelta: {x: 347.27, y: 104.66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2008559451
 MonoBehaviour:
