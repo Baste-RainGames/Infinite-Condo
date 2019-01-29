@@ -56,44 +56,56 @@ public static class SoundEffects
 
 public class Song
 {
-	public string Name;
-	public List<string> Parameters;
-	public string EventLocation;
+    public string Name;
+    public List<string> Parameters;
+    public string EventLocation;
 
-	public Song(string name, string eventLocation, List<string> parameters)
-	{
-        Name = name;
-		Parameters = new List<string>();
-		EventLocation = eventLocation;
-		Parameters.AddRange(parameters);
-	}
-
-	public Song(string name, string eventLocation)
-	{
+    public Song(string name, string eventLocation, List<string> parameters)
+    {
         Name = name;
         Parameters = new List<string>();
-		EventLocation = eventLocation;
-	}
+        EventLocation = eventLocation;
+        Parameters.AddRange(parameters);
+    }
+
+    public Song(string name, string eventLocation)
+    {
+        Name = name;
+        Parameters = new List<string>();
+        EventLocation = eventLocation;
+    }
 }
 
 public static class MusicSystem
 {
 
+    public static float MusicVolume
+    {
+        get => PlayerPrefs.GetFloat("MusicVolume", 1);
+        set
+        {
+            PlayerPrefs.SetFloat("MusicVolume", value);
+            PlayerPrefs.Save();
+
+            if (currentSong != null)
+                musicInstance.setVolume(MusicVolume);
+        }
+    }
+
     private static FMOD.Studio.EventInstance musicInstance;
     private static Song currentSong;
-    public static float musicVolume = 1.0f;
-    public static float sfxVolume = 1.0f;
-
-    public static void SetMusicVolume()
+    public static float SfxVolume
     {
-        if (currentSong != null)
+        get => PlayerPrefs.GetFloat("SfxVolume", 1);
+        set
         {
-            musicInstance.setVolume(musicVolume);
+            PlayerPrefs.SetFloat("SfxVolume", value);
+            PlayerPrefs.Save();
         }
     }
 
     public static void PlaySong(Song song)
-	{
+    {
         if (currentSong != null)
         {
             if (currentSong.Name.Equals(song.Name))
@@ -103,33 +115,33 @@ public static class MusicSystem
         }
         StopSong();
         currentSong = song;
-		musicInstance = FMODUnity.RuntimeManager.CreateInstance(song.EventLocation);
-		musicInstance.setVolume(musicVolume);
-		musicInstance.start();
-	}
+        musicInstance = FMODUnity.RuntimeManager.CreateInstance(song.EventLocation);
+        musicInstance.setVolume(MusicVolume);
+        musicInstance.start();
+    }
 
-	public static void PauseCurrentSong()
-	{
-		musicInstance.setPaused(true);
-	}
+    public static void PauseCurrentSong()
+    {
+        musicInstance.setPaused(true);
+    }
 
-	public static void ResumeCurrentSong()
-	{
-		musicInstance.setPaused(false);
-	}
+    public static void ResumeCurrentSong()
+    {
+        musicInstance.setPaused(false);
+    }
 
-	public static void StopSong()
-	{
-		musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-		musicInstance.release();
-	}
+    public static void StopSong()
+    {
+        musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        musicInstance.release();
+    }
 
-	public static void PlaySoundEffect(string path)
-	{
-		var soundEffect = FMODUnity.RuntimeManager.CreateInstance(path);
-		soundEffect.setVolume(sfxVolume);
-		soundEffect.start();
-	}
+    public static void PlaySoundEffect(string path)
+    {
+        var soundEffect = FMODUnity.RuntimeManager.CreateInstance(path);
+        soundEffect.setVolume(SfxVolume);
+        soundEffect.start();
+    }
 
     public static void PlaySongPart(string part)
     {

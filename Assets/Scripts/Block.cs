@@ -101,10 +101,10 @@ public class Block : MonoBehaviour {
         }
     }
 
-    public void Place() {
+    public void Place(bool isStartupPlace = false) {
         var grid = FindObjectOfType<CondoGrid>();
         if (grid != null) {
-            grid.PlaceBlock(this);
+            grid.PlaceBlock(this, isStartupPlace);
         }
 
         var rot = transform.eulerAngles.z;
