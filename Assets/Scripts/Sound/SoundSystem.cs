@@ -76,7 +76,7 @@ public class Song
     }
 }
 
-public static class MusicSystem
+public static class SoundSystem
 {
 
     public static float MusicVolume

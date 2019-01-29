@@ -6,14 +6,14 @@ public class MainMenu : MonoBehaviour
 {
     public void OnEnable()
     {
-        MusicSystem.PlaySong(Songs.SongDictionary[Songs.MainTheme]);
-        MusicSystem.PlaySongPart("ToIntro");
+        SoundSystem.PlaySong(Songs.SongDictionary[Songs.MainTheme]);
+        SoundSystem.PlaySongPart("ToIntro");
     }
 
     public void PlayGame ()
     {
-        MusicSystem.PlaySong(Songs.SongDictionary[Songs.MainTheme]);
-        MusicSystem.PlaySongPart("ToIntro");
+        SoundSystem.PlaySong(Songs.SongDictionary[Songs.MainTheme]);
+        SoundSystem.PlaySongPart("ToIntro");
         SceneManager.LoadScene(2);
 
     }

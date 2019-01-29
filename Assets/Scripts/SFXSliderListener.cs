@@ -8,12 +8,12 @@ public class SFXSliderListener : MonoBehaviour
     private void Start()
     {
         slider = GetComponent<Slider>();
-        slider.value = MusicSystem.SfxVolume;
+        slider.value = SoundSystem.SfxVolume;
         slider.onValueChanged.AddListener(UpdateVolume);
     }
 
     private void UpdateVolume(float volume)
     {
-        MusicSystem.SfxVolume = volume;
+        SoundSystem.SfxVolume = volume;
     }
 }

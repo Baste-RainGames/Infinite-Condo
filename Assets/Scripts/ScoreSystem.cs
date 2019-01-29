@@ -54,19 +54,19 @@ public class ScoreSystem : MonoBehaviour{
 
     public static void IncreaseScore(int score) {
         if (score != 0) {
-            MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Coins2"]);
+            SoundSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Coins2"]);
         }
         instance.Score += score;
     }
 
     public void IncreaseComboCount() {
-        MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Condo"]);
+        SoundSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Condo"]);
         ComboCount++;
     }
 
     public void ResetComboCount() {
         if (ComboCount > 1) {
-            MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Condobreaker"]);
+            SoundSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Condobreaker"]);
         }
         ComboCount = 1;
     }

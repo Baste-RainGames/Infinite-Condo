@@ -81,13 +81,13 @@ public class SharkAttack : MonoBehaviour {
         sharkAttackAmount++;
         if (sharkAttackAmount.Equals(Tweaks.Instance.sharkAttackToMainTheme))
         {
-            MusicSystem.PlaySongPart("ToMain");
+            SoundSystem.PlaySongPart("ToMain");
         }
         else if (sharkAttackAmount.Equals(Tweaks.Instance.sharkAttackToIntenseTheme))
         {
-            MusicSystem.PlaySongPart("ToIntense");
+            SoundSystem.PlaySongPart("ToIntense");
         }
-        MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["SharkAttack"]);
+        SoundSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["SharkAttack"]);
 
         var allPeopleToEat = FindObjectsOfType<Person>().Where(p => p.posY <= 1).ToList();
 
