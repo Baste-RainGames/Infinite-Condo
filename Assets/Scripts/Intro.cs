@@ -1,8 +1,9 @@
 ﻿using System.Collections;
+using System.Linq;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using FMODUnity;
 
 public class Intro : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class Intro : MonoBehaviour
 
     IEnumerator Start()
     {
-        //MusicSystem.PlaySoundEffect(SoundEffects.SoundEffectDictionary["Intro"]);
+        var loader = GetComponent<StudioBankLoader>();
+        loader.Load();
+
         IntroImage.canvasRenderer.SetAlpha(0.0f);
 
         FadeIn();
@@ -19,6 +22,9 @@ public class Intro : MonoBehaviour
 
         FadeOut();
         yield return new WaitForSeconds(2.5f);
+
+        yield return new WaitUntil(() => loader.Banks.All(RuntimeManager.HasBankLoaded));
+
         SceneManager.LoadScene(1);
     }
 

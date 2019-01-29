@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 271472694}
   - component: {fileID: 271472693}
   - component: {fileID: 271472695}
+  - component: {fileID: 271472696}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -201,6 +202,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IntroImage: {fileID: 271472693}
   loadlevel: 1
+--- !u!114 &271472696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271472691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9468c5f457ace64f8d4df6d642b107f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoadEvent: 0
+  UnloadEvent: 0
+  Banks:
+  - Master Bank
+  - Master Bank.strings
+  CollisionTag: 
+  PreloadSamples: 0
 --- !u!1 &774773459
 GameObject:
   m_ObjectHideFlags: 0

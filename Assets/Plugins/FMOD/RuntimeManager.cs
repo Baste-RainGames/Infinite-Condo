@@ -336,7 +336,11 @@ retry:
                 if (!hasAllListeners && !listenerWarningIssued)
                 {
                     listenerWarningIssued = true;
-                    UnityEngine.Debug.LogWarning("[FMOD] Please add an 'FMOD Studio Listener' component to your a camera in the scene for correct 3D positioning of sounds");
+                    // UnityEngine.Debug.LogWarning("[FMOD] Please add an 'FMOD Studio Listener' component to your a camera in the scene for correct 3D positioning of sounds");
+
+                    var listenerContainer = new GameObject("[FmodStudioListener]");
+                    DontDestroyOnLoad(listenerContainer);
+                    listenerContainer.AddComponent<StudioListener>();
                 }
 
                 for (int i = 0; i < attachedInstances.Count; i++)
